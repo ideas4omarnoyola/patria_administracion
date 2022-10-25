@@ -33,6 +33,7 @@ function siguientePagina(){
         if(noPagina == totalPaginas - 1){
             statusCurso('completed');
         }
+
         
         detenerAudios();
         actualizarTemario();
@@ -94,7 +95,7 @@ function desactivarBotonAdelante(){
         btnAdelante.removeClass('activado');
         btnAdelante.addClass('desactivado');
         btnAdelante.css({
-            'opacity': .5,
+            'opacity': .3,
             'cursor': 'default'
         })
     }, 300);
@@ -111,7 +112,7 @@ function activarBotonAdelante(){
     btnAdelante.removeClass('desactivado');
     btnAdelante.addClass('activado');
     setTimeout(()=>{
-        parpadear(btnAdelante, .6);
+        parpadear(btnAdelante, .6, 0, .2);
     }, 300);
 }
 
@@ -229,6 +230,6 @@ function verIntento(){
     return intentos;
 }
 
-function reiniciarInntentos(){
+function reiniciarIntentos(){
     intentos = 1;
 }
