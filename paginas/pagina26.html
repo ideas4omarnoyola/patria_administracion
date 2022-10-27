@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 26</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina26/texto.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos botones" id="boton1" src="../img/pagina26/boton1.png" data-posX="209" data-posY="227" alt="">
+    <img class="elementos infos" id="info1" src="../img/pagina26/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botones" id="boton2" src="../img/pagina26/boton2.png" data-posX="430" data-posY="227" alt="">
+    <img class="elementos infos" id="info2" src="../img/pagina26/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos botones" id="boton3" src="../img/pagina26/boton3.png" data-posX="650" data-posY="227" alt="">
+    <img class="elementos infos" id="info3" src="../img/pagina26/info3.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="ejemplo" src="../img/pagina26/ejemplo.png" data-posX="816" data-posY="491" alt="">
+
+    <img class="elementos" id="pop" src="../img/pagina26/pop.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="cuadro1" src="../img/pagina26/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina26/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro3" src="../img/pagina26/cuadro3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro4" src="../img/pagina26/cuadro4.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="atras" src="../img/pagina26/atras.png" data-posX="51" data-posY="289"/>
+    <img class="elementos" id="adelante" src="../img/pagina26/adelante.png" data-posX="914" data-posY="289"/>
+    <img class="elementos" id="cerrar" src="../img/pagina26/cerrar.png" data-posX="894" data-posY="123"/>
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const d1 = $('#d1');
+        const instrucciones = $('#instrucciones');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const ejemplo = $('#ejemplo');
+
+        const pop = $('#pop');
+
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const cuadro3 = $('#cuadro3');
+        const cuadro4 = $('#cuadro4');
+
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+        const cerrar = $('#cerrar');
+
+        const botones = $('.botones');
+
+        const informacion = [info1, info2, info3];
+        const btns = [boton1, boton2, boton3];
+
+        atras.css('cursor', 'pointer');
+
+        const slides = [cuadro1, cuadro2, cuadro3, cuadro4];
+
+        let noSlide = 0
+
+        let indexInfo = 0;
+        
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Patria_Administración_26_01.mp3'),
+            new Audio('../audios/Audio0.mp3')
+        ]
+
+        const audioBotones = [
+            new Audio('../audios/Patria_Administración_26_02.mp3'),
+            new Audio('../audios/Patria_Administración_26_03.mp3'),
+            new Audio('../audios/Patria_Administración_26_04.mp3'),
+        ]
+
+        const audiosSlides = [
+            new Audio('../audios/Patria_Administración_26_05.mp3'),
+            new Audio('../audios/Patria_Administración_26_06.mp3'),
+            new Audio('../audios/Patria_Administración_26_07.mp3'),
+            new Audio('../audios/Patria_Administración_26_08.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+            animacionEntrada(boton1, 'default', 1, 1.5);
+            animacionEntrada(boton2, 'default', 1, 2);
+            animacionEntrada(boton3, 'default', 1, 2.5);
+        }
+
+        function botonera(){
+            parpadear(btns[indexInfo]);
+        }
+
+        botones.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    aplicacion.reproducirAudio(audioBotones[indexInfo], siguienteBoton, 1);
+                    animacionEntrada(informacion[indexInfo], 'default', 1);
+                    dejarParpadear($(this));
+                }
+            });
+        });
+
+        function siguienteBoton(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                botonera();
+            }
+            else{
+                parpadear(ejemplo);
+            }
+        }
+
+        ejemplo.click(function(){
+            if(ejemplo.css('cursor') == 'pointer'){
+                animacionEntrada(pop, 'default', 1);
+                dejarParpadear(ejemplo);
+                carrusel();
+            }
+        });
+
+        function carrusel(){
+            aplicacion.reproducirAudio(audiosSlides[noSlide], botonAdelante, 1);
+            animacionEntrada(slides[noSlide], 'default', 1);
+
+            if(noSlide > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                parpadear(cerrar);
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel();
+                }, 500);
+            }
+        });
+
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel();
+                }, 500);
+            }
+        });
+
+        cerrar.click(function(){
+            if(cerrar.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar);
+                animacionSalida(pop, 'default', 1, 1);
+                animacionSalida(cuadro1, 'default', 1, 1);
+                animacionSalida(cuadro2, 'default', 1, 1);
+                animacionSalida(cuadro3, 'default', 1, 1);
+                animacionSalida(cuadro4, 'default', 1, 1);
+                animacionSalida(cerrar, 'default', 1, 1);
+                animacionSalida(adelante, 'default', 1, 1);
+                animacionSalida(atras, 'default', 1, 1);
+                aplicacion.terminaPantalla();
+            }
+        });
+
+    </script>
+</body>
+</html>

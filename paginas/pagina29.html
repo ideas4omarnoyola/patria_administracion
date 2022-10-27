@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 29</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="texto" src="../img/pagina29/texto.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d3" src="../img/pagina29/d3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d2" src="../img/pagina29/d2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d1" src="../img/pagina29/d1.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="ejemplo" src="../img/pagina29/ejemplo.png" data-posX="58" data-posY="455"/>
+    <img class="elementos" id="pop" src="../img/pagina29/pop.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cerrar" src="../img/pagina29/cerrar.png" data-posX="894" data-posY="123"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+        const d3 = $('#d3');
+        const ejemplo = $('#ejemplo');
+        const cerrar = $('#cerrar');
+        const pop = $('#pop');
+
+        const textos = [d1, d2, d3];
+        let indexTexto = 0; 
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Patria_Administración_29_04.mp3')
+        ]
+
+        const audioTexto = [
+            new Audio('../audios/Patria_Administración_29_01.mp3'),
+            new Audio('../audios/Patria_Administración_29_02.mp3'),
+            new Audio('../audios/Patria_Administración_29_03.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(texto, 'default', 1);
+            aparecerImagenes();
+        }
+
+        function aparecerImagenes(){
+            aplicacion.reproducirAudio(audioTexto[indexTexto], siguiente, 1);
+            animacionEntrada(textos[indexTexto], 'abajo-arriba', 1, 1);
+        }
+
+        function siguiente(){
+            indexTexto++;
+
+            if(indexTexto < textos.length){
+                aparecerImagenes();
+            }
+            else{
+                parpadear(ejemplo);
+            }
+        }
+
+        ejemplo.click(function(){
+            if(ejemplo.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[0], cerrarPop, 1);
+                animacionEntrada(pop, 'default', 1);
+                dejarParpadear(ejemplo);
+            }
+        });
+
+        function cerrarPop(){
+            parpadear(cerrar);
+        }
+
+        cerrar.click(function(){
+            if(cerrar.css('cursor') == 'pointer'){
+                dejarParpadear(cerrar);
+                animacionSalida(pop, 'default', 1, 1);
+                animacionSalida(cerrar, 'default', 1, 1);
+                aplicacion.terminaPantalla();
+            }
+        });
+
+    </script>
+</body>
+</html>

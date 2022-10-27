@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 20</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="texto" src="../img/pagina20/texto.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo" src="../img/pagina20/dialogo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton" src="../img/pagina20/boton.png" data-posX="603" data-posY="216"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const texto = $('#texto');
+        const dialogo = $('#dialogo');
+        const boton = $('#boton');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Patria_Administración_20_01.mp3'),
+            new Audio('../audios/Patria_Administración_20_02.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], cuadro, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
+        }
+
+        function cuadro(){
+            aplicacion.reproducirAudio(audio[1], activarBoton, 1);
+            animacionEntrada(dialogo, 'default', 1, 1);
+            animacionEntrada(boton, 'default', 1, 1);
+        }
+
+        function activarBoton(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.siguientePagina();
+            }
+        });
+
+    </script>
+</body>
+</html>
