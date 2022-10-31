@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 04</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="subtitulo" src="../img/pagina04/subtitulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="pregunta" src="../img/pagina04/pregunta.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="img" src="../img/pagina04/img.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina04/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos" id="btn01" src="../img/pagina04/btn01.png" data-posX="62" data-posY="213" alt="">
+    <img class="elementos" id="btn02" src="../img/pagina04/btn02.png" data-posX="62" data-posY="295" alt="">
+    <img class="elementos" id="btn03" src="../img/pagina04/btn03.png" data-posX="62" data-posY="377" alt="">
+    <img class="elementos" id="btn04" src="../img/pagina04/btn04.png" data-posX="62" data-posY="459" alt="">
+
+    <img class="elementos" id="info01" src="../img/pagina04/info01.png" data-posX="330" data-posY="203" alt="">
+    <img class="elementos" id="info02" src="../img/pagina04/info02.png" data-posX="330" data-posY="293" alt="">
+    <img class="elementos" id="info03" src="../img/pagina04/info03.png" data-posX="330" data-posY="380" alt="">
+    <img class="elementos" id="info04" src="../img/pagina04/info04.png" data-posX="330" data-posY="466" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtitulo = $('#subtitulo');
+        const pregunta = $('#pregunta');
+        const img = $('#img');
+        const instrucciones = $('#instrucciones');
+        const btn01= $('#btn01');
+        const btn02= $('#btn02');
+        const btn03= $('#btn03');
+        const btn04= $('#btn04');
+
+        const info01= $('#info01');
+        const info02= $('#info02');
+        const info03= $('#info03');
+        const info04= $('#info04');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Patria_Administración_04_01.mp3'),
+            new Audio('../audios/Patria_Administración_04_02.mp3'),
+            new Audio('../audios/Patria_Administración_04_03.mp3'),
+            new Audio('../audios/Patria_Administración_04_04.mp3'),
+            new Audio('../audios/Patria_Administración_04_05.mp3'),
+            new Audio('../audios/Patria_Administración_04_06.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], finalAudio01, 1);
+            animacionEntrada(subtitulo, 'default', 1);
+        }
+
+        function finalAudio01(){
+            aplicacion.reproducirAudio(audio[1], clickBtn01, 1);
+            animacionEntrada(pregunta, 'default', 1);
+            animacionEntrada(img, 'default', 1);
+            animacionEntrada(instrucciones, 'default', 1, 4.5);
+            animacionEntrada(btn01, 'derecha-izquierda', 1, 5);
+            animacionEntrada(btn02, 'derecha-izquierda', 1, 5.5);
+            animacionEntrada(btn03, 'derecha-izquierda', 1, 6);
+            animacionEntrada(btn04, 'derecha-izquierda', 1, 6.5);
+        }
+
+        function clickBtn01(){
+            parpadear(btn01);
+        }
+        function clickBtn02(){
+            parpadear(btn02);
+        }
+        function clickBtn03(){
+            parpadear(btn03);
+        }
+        function clickBtn04(){
+            parpadear(btn04);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+        btn01.click(function(){
+            if(btn01.css('cursor') == 'pointer'){
+                dejarParpadear(btn01);
+                aplicacion.reproducirAudio(audio[2], clickBtn02, 1);
+                animacionSalida(img, 'default', 1);
+                animacionEntrada(info01, 'default', 1, 1);
+            }
+        });
+        btn02.click(function(){
+            if(btn02.css('cursor') == 'pointer'){
+                dejarParpadear(btn02);
+                aplicacion.reproducirAudio(audio[3], clickBtn03, 1);
+                animacionEntrada(info02, 'default', 1, 1);
+            }
+        });
+        btn03.click(function(){
+            if(btn03.css('cursor') == 'pointer'){
+                dejarParpadear(btn03);
+                aplicacion.reproducirAudio(audio[4], clickBtn04, 1);
+                animacionEntrada(info03, 'default', 1, 1);
+            }
+        });
+        btn04.click(function(){
+            if(btn04.css('cursor') == 'pointer'){
+                dejarParpadear(btn04);
+                aplicacion.reproducirAudio(audio[5], finalPagina, 1);
+                animacionEntrada(info04, 'default', 1, 1);
+            }
+        });
+
+
+    </script>
+</body>
+</html>

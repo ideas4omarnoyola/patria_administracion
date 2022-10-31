@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 09</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="subtitulo" src="../img/pagina09/subtitulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla01" src="../img/pagina09/tabla01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla02" src="../img/pagina09/tabla02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla03" src="../img/pagina09/tabla03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla04" src="../img/pagina09/tabla04.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btnEjemplo" src="../img/pagina09/btnEjemplo.png" data-posX="637" data-posY="507" alt="">
+    <img class="elementos" id="popup" src="../img/pagina09/popup.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnCerrar" src="../img/pagina09/btnCerrar.png" data-posX="894" data-posY="123" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtitulo = $('#subtitulo');
+        const tabla01 = $('#tabla01');
+        const tabla02 = $('#tabla02');
+        const tabla03 = $('#tabla03');
+        const tabla04 = $('#tabla04');
+
+        const btnEjemplo = $('#btnEjemplo');
+        const popup = $('#popup');
+        const btnCerrar = $('#btnCerrar');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Patria_Administración_09_01.mp3'),
+            new Audio('../audios/Patria_Administración_09_02.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickEjemplo, 1);
+            animacionEntrada(subtitulo, 'default', 1);
+            animacionEntrada(tabla01, 'izquierda-derecha', 1, 5);
+            animacionEntrada(tabla02, 'izquierda-derecha', 1, 17);
+            animacionEntrada(tabla03, 'izquierda-derecha', 1, 25);
+            animacionEntrada(tabla04, 'izquierda-derecha', 1, 35);
+
+        }
+        function clickEjemplo(){
+            parpadear(btnEjemplo)
+        }
+        function cerrar(){
+            parpadear(btnCerrar);
+        }
+
+        btnEjemplo.click(function(){
+            if(btnEjemplo.css('cursor') == 'pointer'){
+                dejarParpadear(btnEjemplo, true);
+                aplicacion.reproducirAudio(audio[1], cerrar, 1);
+                animacionEntrada(popup, 'default', 1, 1);
+            }
+        });
+        btnCerrar.click(function(){
+            if(btnCerrar.css('cursor') == 'pointer'){
+                dejarParpadear(btnCerrar);
+                animacionSalida(popup, 'default', 1);
+                animacionSalida(btnCerrar, 'default', 1);
+
+                setTimeout(() => {
+                    aplicacion.terminaPantalla();
+                }, 1000);
+            }
+        });
+
+
+
+
+
+    </script>
+</body>
+</html>
