@@ -72,6 +72,11 @@
         const btnSiguiente = $('#btnSiguiente');
         const btnAtras = $('#btnAtras');
 
+        let abrirBtn01 = false;
+        let abrirBtn02 = false;
+        let abrirBtn03 = false;
+        let abrirBtn04 = false;
+
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_14_02.mp3'),
@@ -99,19 +104,31 @@
         }
 
         function clickBtn01(){
-            parpadear(btn01)
+            if(!abrirBtn01){
+                abrirBtn01 = true;
+                parpadear(btn01);
+            }
         }
         function clickBtn02(){
-            parpadear(btn02)
+            if(!abrirBtn02){
+                abrirBtn02 = true;
+                parpadear(btn02);
+            }
         }
         function siguiente(){
             parpadear(btnSiguiente);
         }
         function clickBtn03(){
-            parpadear(btn03)
+            if(!abrirBtn03){
+                abrirBtn03 = true;
+                parpadear(btn03);
+            }
         }
         function clickBtn04(){
-            parpadear(btn04)
+            if(!abrirBtn04){
+                abrirBtn04 = true;
+                parpadear(btn04);
+            }
         }
 
         function cerrar01(){
@@ -164,6 +181,7 @@
                 dejarParpadear(btnCerrar02);
                 animacionSalida(popup02_2, 'default', 1);
                 animacionSalida(btnCerrar02, 'default', 1);
+                animacionSalida(btnAtras, 'default', 1);
 
                 setTimeout(() => {
                     clickBtn03();
@@ -195,7 +213,7 @@
         btn03.click(function(){
             if(btn03.css('cursor') == 'pointer'){
                 dejarParpadear(btn03, true);
-                aplicacion.reproducirAudio(audio[3], cerrar03, 1);
+                aplicacion.reproducirAudio(audio[4], cerrar03, 1);
                 animacionEntrada(popup03, 'default', 1, 1);
             }
         });
@@ -215,7 +233,7 @@
         btn04.click(function(){
             if(btn04.css('cursor') == 'pointer'){
                 dejarParpadear(btn04, true);
-                aplicacion.reproducirAudio(audio[4], cerrar04, 1);
+                aplicacion.reproducirAudio(audio[5], cerrar04, 1);
                 animacionEntrada(popup04, 'default', 1, 1);
             }
         });
