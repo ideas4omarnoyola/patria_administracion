@@ -86,8 +86,8 @@
     <!-- Pregunta 10 -->
     <img class="elementos r10 set3" id="v10" src="../img/pagina32/verdadero.png" data-posX="730" data-posY="480"/>
     <img class="elementos r10 set3" id="f10" src="../img/pagina32/falso.png" data-posX="730" data-posY="508"/>
-    <img class="elementos rSet3" id="paloma10" src="../img/pagina32/paloma.png" data-posX="967" data-posY="508"/>
-    <img class="elementos rSet3" id="tache10" src="../img/pagina32/tache.png" data-posX="967" data-posY="480"/>
+    <img class="elementos rSet3" id="paloma10" src="../img/pagina32/paloma.png" data-posX="967" data-posY="480"/>
+    <img class="elementos rSet3" id="tache10" src="../img/pagina32/tache.png" data-posX="967" data-posY="508"/>
 
     <!-- Positiva -->
     <img class="elementos" id="positiva" src="../img/pagina32/retroBuena.png" data-posX="0" data-posY="0" alt="">
@@ -239,9 +239,9 @@
                 verPantalla3();
             }
             if(contestadas == 10){
-                animacionSalida(pantalla3, 'default', 1);
-                animacionSalida(set3, 'default', 1);
-                animacionSalida(rSet3, 'default', 1);
+                animacionSalida(pantalla3, 'default', 1, 4);
+                animacionSalida(set3, 'default', 1, 4);
+                animacionSalida(rSet3, 'default', 1, 4);
                 evaluar();
             }
         }
@@ -420,19 +420,20 @@
 
         v10.click(function(){
             if($(this).css('cursor') == 'pointer'){
-                animacionEntrada(tache10, 'default', 1);
+                animacionEntrada(paloma10, 'default', 1);
                 r10.css('cursor', 'default');
-                audio[4].play();
+                audio[3].play();
+                aciertos++;
                 verificar();
             }
         });
 
         f10.click(function(){
             if($(this).css('cursor') == 'pointer'){
-                animacionEntrada(paloma10, 'default', 1);
+                animacionEntrada(tache10, 'default', 1);
                 r10.css('cursor', 'default');
                 audio[3].play();
-                aciertos++;
+                audio[4].play();
                 verificar();
             }
         });
@@ -466,8 +467,8 @@
                 'left': '593px'
             });
 
-            animacionEntrada(positiva, 'default', 1);
-            animacionEntrada(promedio, 'default', 1);
+            animacionEntrada(positiva, 'default', 1, 5);
+            animacionEntrada(promedio, 'default', 1, 5);
 
             aplicacion.terminaPantalla();
         }
@@ -480,8 +481,8 @@
                 'top': '220px',
                 'left': '612px'
             });
-            animacionEntrada(negativa, 'default', 1);
-            animacionEntrada(promedio, 'default', 1);
+            animacionEntrada(negativa, 'default', 1, 5);
+            animacionEntrada(promedio, 'default', 1, 5);
             parpadear(btnReintentar);
         }
 
@@ -497,8 +498,8 @@
                 'top': '248px',
                 'left': '603px'
             });
-            animacionEntrada(final, 'default', 1);
-            animacionEntrada(promedio, 'default', 1);
+            animacionEntrada(final, 'default', 1, 5);
+            animacionEntrada(promedio, 'default', 1, 5);
             parpadear(btnReiniciar);
         }
 
