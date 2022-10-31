@@ -483,7 +483,9 @@
             });
             animacionEntrada(negativa, 'default', 1, 5);
             animacionEntrada(promedio, 'default', 1, 5);
-            parpadear(btnReintentar);
+            setTimeout(()=>{
+                parpadear(btnReintentar);
+            }, 6000);
         }
 
         btnReintentar.click(function(){
@@ -500,7 +502,9 @@
             });
             animacionEntrada(final, 'default', 1, 5);
             animacionEntrada(promedio, 'default', 1, 5);
-            parpadear(btnReiniciar);
+            setTimeout(()=>{
+                parpadear(btnReiniciar);
+            }, 6000);
         }
 
         btnReiniciar.click(function(){
