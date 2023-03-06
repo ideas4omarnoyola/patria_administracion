@@ -23,7 +23,6 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina31/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="boton" src="../img/pagina31/boton.png" data-posX="628" data-posY="460"/>
 
     
     <!-- Script de la página -->
@@ -32,7 +31,6 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const boton = $('#boton');
 
         // Audios------------------------------------------------------
         const audio = [
@@ -46,20 +44,13 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
-            animacionEntrada(texto, 'default', 1, 1);
+            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
         }
 
-        function activarBoton(){
-            parpadear(boton);
+        function finalPagina(){
+            aplicacion.terminaPantalla();
         }
-
-        boton.click(function(){
-            if(boton.css('cursor') == 'pointer'){
-                dejarParpadear(boton);
-                aplicacion.siguientePagina();
-            }
-        });
 
     </script>
 </body>
