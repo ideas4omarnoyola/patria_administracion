@@ -23,7 +23,6 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina24/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="boton" src="../img/pagina24/boton.png" data-posX="603" data-posY="352"/>
 
     
     <!-- Script de la página -->
@@ -32,12 +31,10 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const dialogo = $('#dialogo');
-        const boton = $('#boton');
 
         // Audios------------------------------------------------------
         const audio = [
-            
+            new Audio('../audios/Patria_Administración_24_01.mp3')
         ]
 
         // Al cargarse la página
@@ -47,18 +44,13 @@
         });
 
         function iniciarContenido(){
-            animacionEntrada(texto, 'default', 1, 1);
-            setTimeout(()=>{
-                parpadear(boton);
-            }, 1000);
+            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
         }
 
-        boton.click(function(){
-            if(boton.css('cursor') == 'pointer'){
-                dejarParpadear(boton);
-                aplicacion.siguientePagina();
-            }
-        });
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
 
     </script>
 </body>

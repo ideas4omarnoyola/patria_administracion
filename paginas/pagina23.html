@@ -23,8 +23,8 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina23/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro1" src="../img/pagina23/cuadro1.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro2" src="../img/pagina23/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="dialogo" src="../img/pagina23/dialogo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton" src="../img/pagina23/boton.png" data-posX="603" data-posY="216"/>
 
     
     <!-- Script de la página -->
@@ -33,8 +33,8 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const cuadro1 = $('#cuadro1');
-        const cuadro2 = $('#cuadro2');
+        const dialogo = $('#dialogo');
+        const boton = $('#boton');
 
         // Audios------------------------------------------------------
         const audio = [
@@ -50,18 +50,25 @@
 
         function iniciarContenido(){
             aplicacion.reproducirAudio(audio[0], cuadro, 1);
-            animacionEntrada(texto, 'default', 1, 1);
-            animacionEntrada(cuadro1, 'default', 1, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
         }
 
         function cuadro(){
-            aplicacion.reproducirAudio(audio[1], finalPantalla, 1);
-            animacionEntrada(cuadro2, 'default', 1, 1);
+            aplicacion.reproducirAudio(audio[1], activarBoton, 1);
+            animacionEntrada(dialogo, 'default', 1, 1);
+            animacionEntrada(boton, 'default', 1, 1);
         }
 
-        function finalPantalla(){  
-            aplicacion.terminaPantalla();
+        function activarBoton(){
+            parpadear(boton);
         }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.siguientePagina();
+            }
+        });
 
     </script>
 </body>

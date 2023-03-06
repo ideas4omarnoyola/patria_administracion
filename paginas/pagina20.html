@@ -21,25 +21,30 @@
 
 </head>
 <body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina20/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina20/instrucciones.png" data-posX="0" data-posY="0" alt="">
 
-    <img class="elementos" id="texto" src="../img/pagina20/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="dialogo" src="../img/pagina20/dialogo.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="boton" src="../img/pagina20/boton.png" data-posX="603" data-posY="216"/>
+    <img class="elementos" id="btnEjemplo" src="../img/pagina20/btnEjemplo.png" data-posX="722" data-posY="454" alt="">
+    <img class="elementos" id="popup" src="../img/pagina20/popup.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnCerrar" src="../img/pagina20/btnCerrar.png" data-posX="862" data-posY="123" alt="">
 
-    
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
-        const texto = $('#texto');
-        const dialogo = $('#dialogo');
-        const boton = $('#boton');
+
+        const fondo = $('#fondo');
+        const instrucciones= $('#instrucciones');
+
+        const btnEjemplo = $('#btnEjemplo');
+        const popup = $('#popup');
+        const btnCerrar = $('#btnCerrar');
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_20_01.mp3'),
-            new Audio('../audios/Patria_Administración_20_02.mp3')
+            new Audio('../audios/Patria_Administración_20_02.mp3'),
         ]
 
         // Al cargarse la página
@@ -49,26 +54,40 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], cuadro, 1);
-            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
+            aplicacion.reproducirAudio(audio[0], clickEjemplo, 1);
+            animacionEntrada(fondo, 'default', 1);
         }
 
-        function cuadro(){
-            aplicacion.reproducirAudio(audio[1], activarBoton, 1);
-            animacionEntrada(dialogo, 'default', 1, 1);
-            animacionEntrada(boton, 'default', 1, 1);
+        function clickEjemplo(){
+            parpadear(btnEjemplo);
+            animacionEntrada(instrucciones, 'default', 1);
+        }
+        function cerrar(){
+            parpadear(btnCerrar);
         }
 
-        function activarBoton(){
-            parpadear(boton);
-        }
-
-        boton.click(function(){
-            if(boton.css('cursor') == 'pointer'){
-                dejarParpadear(boton);
-                aplicacion.siguientePagina();
+        btnEjemplo.click(function(){
+            if(btnEjemplo.css('cursor') == 'pointer'){
+                dejarParpadear(btnEjemplo, true);
+                aplicacion.reproducirAudio(audio[1], cerrar, 1);
+                animacionEntrada(popup, 'default', 1, 1);
             }
         });
+        btnCerrar.click(function(){
+            if(btnCerrar.css('cursor') == 'pointer'){
+                dejarParpadear(btnCerrar);
+                animacionSalida(popup, 'default', 1);
+                animacionSalida(btnCerrar, 'default', 1);
+
+                setTimeout(() => {
+                    aplicacion.terminaPantalla();
+                }, 1000);
+            }
+        });
+
+
+
+
 
     </script>
 </body>

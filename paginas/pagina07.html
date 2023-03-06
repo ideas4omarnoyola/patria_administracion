@@ -22,7 +22,6 @@
 </head>
 <body class="pagina">
     <img class="elementos" id="fondo" src="../img/pagina07/fondo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="ejemplo" src="../img/pagina07/ejemplo.png" data-posX="0" data-posY="0" alt="">
 
     <!-- Script de la página -->
     <script>
@@ -36,7 +35,6 @@
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_07_01.mp3'),
-            new Audio('../audios/Patria_Administración_07_02.mp3'),
         ]
 
         // Al cargarse la página
@@ -46,13 +44,9 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], siguienteAudio, 1);
+            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
             animacionEntrada(fondo, 'default', 1, 1);
 
-        }
-        function siguienteAudio(){
-            aplicacion.reproducirAudio(audio[1], finalPagina, 1);
-            animacionEntrada(ejemplo, 'derecha-izquierda', 1);
         }
 
         function finalPagina(){

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 05</title>
+    <title>Página 19</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/estilos.css">
@@ -21,25 +21,7 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="texto" src="../img/pagina19/texto.png" data-posX="0" data-posY="0" alt="">
-
-    <img class="elementos infos" id="doc1" src="../img/pagina19/doc1.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="doc2" src="../img/pagina19/doc2.png" data-posX="0" data-posY="0" alt="">
-
-    <img class="elementos infos" id="info1" src="../img/pagina19/info1.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="info2" src="../img/pagina19/info2.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="info3" src="../img/pagina19/info3.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="info4" src="../img/pagina19/info4.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="info5" src="../img/pagina19/info5.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos infos" id="info6" src="../img/pagina19/info6.png" data-posX="0" data-posY="0" alt="">
-    
-    <img class="elementos botonBien" id="boton1" src="../img/pagina19/bien.png" data-posX="85" data-posY="218" alt="">
-    <img class="elementos botonBien" id="boton2" src="../img/pagina19/bien.png" data-posX="85" data-posY="325" alt="">
-    <img class="elementos botonBien" id="boton3" src="../img/pagina19/bien.png" data-posX="85" data-posY="439" alt="">
-    <img class="elementos botonMal" id="boton4" src="../img/pagina19/mal.png" data-posX="533" data-posY="218" alt="">
-    <img class="elementos botonMal" id="boton5" src="../img/pagina19/mal.png" data-posX="533" data-posY="333" alt="">
-    <img class="elementos botonMal" id="boton6" src="../img/pagina19/mal.png" data-posX="533" data-posY="448" alt="">
-
+    <img class="elementos" id="fondo" src="../img/pagina19/fondo.png" data-posX="0" data-posY="0" alt="">
 
     <!-- Script de la página -->
     <script>
@@ -47,50 +29,11 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
 
-        const texto = $('#texto');
-        const doc1 = $('#doc1');
-        const doc2 = $('#doc2');
-        const boton1 = $('#boton1');
-        const boton2 = $('#boton2');
-        const boton3 = $('#boton3');
-        const boton4 = $('#boton4');
-        const boton5 = $('#boton5');
-        const boton6 = $('#boton6');
-        const info1 = $('#info1');
-        const info2 = $('#info2');
-        const info3 = $('#info3');
-        const info4 = $('#info4');
-        const info5 = $('#info5');
-        const info6 = $('#info6');
-
-        const botonBien = $('.botonBien');
-        const botonMal = $('.botonMal');
-
-        const infoBien = [info1, info2, info3];
-        const infoMal = [info4, info5, info6];
-        const btnsBien = [boton1, boton2, boton3];
-        const btnsMal = [boton4, boton5, boton6];
-
-        let indexBien = 0;
-        let indexMal = 0;
-        
+        const fondo = $('#fondo');
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_19_01.mp3'),
-            new Audio('../audios/Patria_Administración_19_05.mp3')
-        ]
-
-        const audioBien = [
-            new Audio('../audios/Patria_Administración_19_02.mp3'),
-            new Audio('../audios/Patria_Administración_19_03.mp3'),
-            new Audio('../audios/Patria_Administración_19_04.mp3')
-        ]
-
-        const audioMal = [
-            new Audio('../audios/Patria_Administración_19_06.mp3'),
-            new Audio('../audios/Patria_Administración_19_07.mp3'),
-            new Audio('../audios/Patria_Administración_19_08.mp3')
         ]
 
         // Al cargarse la página
@@ -100,59 +43,14 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], botoneraBien, 1);
-            animacionEntrada(texto, 'default', 1, 1);
-            animacionEntrada(doc1, 'default', 1, 1);
+            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+
+        }
+        function finalPagina(){
+            aplicacion.terminaPantalla();
         }
 
-        function botoneraBien(){
-            parpadear(btnsBien[indexBien]);
-        }
-
-        botonBien.each(function(){
-            $(this).click(function () {  
-                if($(this).css('cursor') == 'pointer'){
-                    aplicacion.reproducirAudio(audioBien[indexBien], siguienteB, 1);
-                    animacionEntrada(infoBien[indexBien], 'default', 1);
-                    dejarParpadear($(this));
-                }
-            });
-        });
-
-        function siguienteB(){
-            indexBien++;
-            if(indexBien < infoBien.length){
-                botoneraBien();
-            }
-            else{
-                aplicacion.reproducirAudio(audio[1], botoneraMal, 1);
-                animacionEntrada(doc2, 'default', 1, 1);
-            }
-        }
-
-        function botoneraMal(){
-            parpadear(btnsMal[indexMal]);
-        }
-
-        botonMal.each(function(){
-            $(this).click(function () {  
-                if($(this).css('cursor') == 'pointer'){
-                    aplicacion.reproducirAudio(audioMal[indexMal], siguienteM, 1);
-                    animacionEntrada(infoMal[indexMal], 'default', 1);
-                    dejarParpadear($(this));
-                }
-            });
-        });
-
-        function siguienteM(){
-            indexMal++;
-            if(indexMal < infoMal.length){
-                botoneraMal();
-            }
-            else{
-                aplicacion.terminaPantalla();
-            }
-        }
 
     </script>
 </body>
