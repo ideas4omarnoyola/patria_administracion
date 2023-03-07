@@ -234,7 +234,7 @@ body{
     left: 100%;
     width: 30px;
     height: 60px;
-    background: var(--principal);
+    background: var(--claro);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -246,7 +246,7 @@ body{
 }
 
 .cerrar i{
-    color: #FFF;
+    color: var(--principal);
     font-size: 28px;
 }
 
