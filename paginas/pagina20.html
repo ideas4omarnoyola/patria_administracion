@@ -21,12 +21,15 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="fondo" src="../img/pagina20/fondo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="instrucciones" src="../img/pagina20/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="fondo" src="../img/pagina20/fondo.png" data-posX="0" data-posY="0"/>
 
-    <img class="elementos" id="btnEjemplo" src="../img/pagina20/btnEjemplo.png" data-posX="722" data-posY="454" alt="">
-    <img class="elementos" id="popup" src="../img/pagina20/popup.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="btnCerrar" src="../img/pagina20/btnCerrar.png" data-posX="862" data-posY="123" alt="">
+    <img class="elementos" id="cuadro1" src="../img/pagina20/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina20/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro3" src="../img/pagina20/cuadro3.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="atras" src="../img/pagina20/atras.png" data-posX="23" data-posY="271"/>
+    <img class="elementos" id="adelante" src="../img/pagina20/adelante.png" data-posX="946" data-posY="271"/>
+
 
     <!-- Script de la página -->
     <script>
@@ -35,16 +38,26 @@
         let aplicacion = parent;
 
         const fondo = $('#fondo');
-        const instrucciones= $('#instrucciones');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const cuadro3 = $('#cuadro3');
 
-        const btnEjemplo = $('#btnEjemplo');
-        const popup = $('#popup');
-        const btnCerrar = $('#btnCerrar');
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+        atras.css('cursor', 'pointer');
+
+        const slides = [cuadro1, cuadro2, cuadro3];
+        let noSlide = 0
 
         // Audios------------------------------------------------------
         const audio = [
+            new Audio('../audios/audio0.mp3')
+        ]
+        
+        const audiosSlides = [
             new Audio('../audios/Patria_Administración_20_01.mp3'),
             new Audio('../audios/Patria_Administración_20_02.mp3'),
+            new Audio('../audios/Patria_Administración_20_03.mp3'),
         ]
 
         // Al cargarse la página
@@ -54,40 +67,56 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], clickEjemplo, 1);
-            animacionEntrada(fondo, 'default', 1);
+            aplicacion.reproducirAudio(audio[0], actividad, 1);
+            animacionEntrada(fondo, 'izquierda-derecha', 1)
         }
 
-        function clickEjemplo(){
-            parpadear(btnEjemplo);
-            animacionEntrada(instrucciones, 'default', 1);
-        }
-        function cerrar(){
-            parpadear(btnCerrar);
+        function actividad(){
+            carrusel(noSlide)
         }
 
-        btnEjemplo.click(function(){
-            if(btnEjemplo.css('cursor') == 'pointer'){
-                dejarParpadear(btnEjemplo, true);
-                aplicacion.reproducirAudio(audio[1], cerrar, 1);
-                animacionEntrada(popup, 'default', 1, 1);
+        function carrusel(pantalla){
+            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+            animacionEntrada(slides[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                aplicacion.terminaPantalla();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
             }
         });
-        btnCerrar.click(function(){
-            if(btnCerrar.css('cursor') == 'pointer'){
-                dejarParpadear(btnCerrar);
-                animacionSalida(popup, 'default', 1);
-                animacionSalida(btnCerrar, 'default', 1);
 
-                setTimeout(() => {
-                    aplicacion.terminaPantalla();
-                }, 1000);
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
             }
         });
-
-
-
-
 
     </script>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,9 +21,16 @@
     <script src="../js/posicionar.js"></script>
 
 </head>
+
+<style>
+    .pointer{
+        cursor: pointer;
+    }
+</style>
 <body class="pagina">
     <img class="elementos" id="fondo" src="../img/pagina17/fondo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="instrucciones" src="../img/pagina17/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina17/instrucciones.png" data-posX="0" data-posY="0"
+        alt="">
 
 
     <img class="elementos" id="btn01" src="../img/pagina17/btn01.png" data-posX="88" data-posY="197" alt="">
@@ -30,19 +38,31 @@
     <img class="elementos" id="btn03" src="../img/pagina17/btn03.png" data-posX="500" data-posY="197" alt="">
     <img class="elementos" id="btn04" src="../img/pagina17/btn04.png" data-posX="729" data-posY="197" alt="">
 
-    <img class="elementos" id="popup01" src="../img/pagina17/popup01.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="popup02_1" src="../img/pagina17/popup02_1.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="popup02_2" src="../img/pagina17/popup02_2.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="popup03" src="../img/pagina17/popup03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos info1" id="popup01_1" src="../img/pagina17/popup01_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos info1" id="popup01_2" src="../img/pagina17/popup01_2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos info2" id="popup02_1" src="../img/pagina17/popup02_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos info2" id="popup02_2" src="../img/pagina17/popup02_2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos info2" id="popup02_3" src="../img/pagina17/popup02_3.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos info3" id="popup03_1" src="../img/pagina17/popup03_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos info3" id="popup03_2" src="../img/pagina17/popup03_2.png" data-posX="0" data-posY="0" alt="">
+
     <img class="elementos" id="popup04" src="../img/pagina17/popup04.png" data-posX="0" data-posY="0" alt="">
 
-    <img class="elementos" id="btnCerrar01" src="../img/pagina17/btnCerrar01.png" data-posX="894" data-posY="123" alt="">
-    <img class="elementos" id="btnCerrar02" src="../img/pagina17/btnCerrar02.png" data-posX="894" data-posY="123" alt="">
-    <img class="elementos" id="btnCerrar03" src="../img/pagina17/btnCerrar03.png" data-posX="894" data-posY="123" alt="">
-    <img class="elementos" id="btnCerrar04" src="../img/pagina17/btnCerrar04.png" data-posX="894" data-posY="123" alt="">
+    <img class="elementos info1" id="btnCerrar01" src="../img/pagina17/btnCerrar.png" data-posX="894" data-posY="123" alt="">
+    <img class="elementos info2" id="btnCerrar02" src="../img/pagina17/btnCerrar.png" data-posX="894" data-posY="123" alt="">
+    <img class="elementos info3" id="btnCerrar03" src="../img/pagina17/btnCerrar.png" data-posX="894" data-posY="123" alt="">
+    <img class="elementos" id="btnCerrar04" src="../img/pagina17/btnCerrar.png" data-posX="894" data-posY="123" alt="">
 
-    <img class="elementos" id="btnSiguiente" src="../img/pagina17/btnSiguiente.png" data-posX="914" data-posY="289" alt="">
-    <img class="elementos" id="btnAtras" src="../img/pagina17/btnAtras.png" data-posX="51" data-posY="289" alt="">
+    <img class="elementos info1" id="adelante1" src="../img/pagina17/adelante.png" data-posX="914" data-posY="289" alt="">
+    <img class="elementos info1 pointer" id="atras1" src="../img/pagina17/atras.png" data-posX="51" data-posY="289" alt="">
+
+    <img class="elementos info2" id="adelante2" src="../img/pagina17/adelante.png" data-posX="914" data-posY="289" alt="">
+    <img class="elementos info2 pointer" id="atras2" src="../img/pagina17/atras.png" data-posX="51" data-posY="289" alt="">
+
+    <img class="elementos info3" id="adelante3" src="../img/pagina17/adelante.png" data-posX="914" data-posY="289" alt="">
+    <img class="elementos info3 pointer" id="atras3" src="../img/pagina17/atras.png" data-posX="51" data-posY="289" alt="">
 
     <!-- Script de la página -->
     <script>
@@ -58,10 +78,13 @@
         const btn03 = $('#btn03');
         const btn04 = $('#btn04');
 
-        const popup01 = $('#popup01');
+        const popup01_1 = $('#popup01_1');
+        const popup01_2 = $('#popup01_2');
         const popup02_1 = $('#popup02_1');
         const popup02_2 = $('#popup02_2');
-        const popup03 = $('#popup03');
+        const popup02_3 = $('#popup02_3');
+        const popup03_1 = $('#popup03_1');
+        const popup03_2 = $('#popup03_2');
         const popup04 = $('#popup04');
 
         const btnCerrar01 = $('#btnCerrar01');
@@ -69,8 +92,25 @@
         const btnCerrar03 = $('#btnCerrar03');
         const btnCerrar04 = $('#btnCerrar04');
 
-        const btnSiguiente = $('#btnSiguiente');
-        const btnAtras = $('#btnAtras');
+        const adelante1 = $('#adelante1');
+        const atras1 = $('#atras1');
+        const adelante2 = $('#adelante2');
+        const atras2 = $('#atras2');
+        const adelante3 = $('#adelante3');
+        const atras3 = $('#atras3');
+
+        const info1 = $('.info1');
+        const info2 = $('.info2');
+        const info3 = $('.info3');
+
+        const slidesBtn1 = [popup01_1, popup01_2];
+        let noSlideBtn1 = 0
+
+        const slidesBtn2 = [popup02_1, popup02_2, popup02_3];
+        let noSlideBtn2 = 0
+
+        const slidesBtn3 = [popup03_1, popup03_2];
+        let noSlideBtn3 = 0
 
         let abrirBtn01 = false;
         let abrirBtn02 = false;
@@ -79,21 +119,33 @@
 
         // Audios------------------------------------------------------
         const audio = [
+            new Audio('../audios/Patria_Administración_17_01.mp3'),
             new Audio('../audios/Patria_Administración_17_02.mp3'),
+        ]
+
+        const audioSlidesBtn1 = [
             new Audio('../audios/Patria_Administración_17_03.mp3'),
             new Audio('../audios/Patria_Administración_17_04.mp3'),
+        ]
+
+        const audioSlidesBtn2 = [
             new Audio('../audios/Patria_Administración_17_05.mp3'),
             new Audio('../audios/Patria_Administración_17_06.mp3'),
             new Audio('../audios/Patria_Administración_17_07.mp3'),
         ]
 
+        const audioSlidesBtn3 = [
+            new Audio('../audios/Patria_Administración_17_08.mp3'),
+            new Audio('../audios/Patria_Administración_17_09.mp3'),
+        ]
+
         // Al cargarse la página
-        $(window).on("load", function(){
+        $(window).on("load", function () {
             redimensionarElementos();
             aplicacion.cargando(iniciarContenido);
         });
 
-        function iniciarContenido(){
+        function iniciarContenido() {
             aplicacion.reproducirAudio(audio[0], clickBtn01, 1);
             animacionEntrada(fondo, 'default', 1);
             animacionEntrada(instrucciones, 'izquierda-derecha', 1, 5);
@@ -103,64 +155,74 @@
             animacionEntrada(btn04, 'izquierda-derecha', 1, 7);
         }
 
-        function clickBtn01(){
-            if(!abrirBtn01){
+
+        //Boton 1
+
+        function clickBtn01() {
+            if (!abrirBtn01) {
                 abrirBtn01 = true;
                 parpadear(btn01);
             }
         }
-        function clickBtn02(){
-            if(!abrirBtn02){
-                abrirBtn02 = true;
-                parpadear(btn02);
-            }
-        }
-        function siguiente(){
-            parpadear(btnSiguiente);
-        }
-        function clickBtn03(){
-            if(!abrirBtn03){
-                abrirBtn03 = true;
-                parpadear(btn03);
-            }
-        }
-        function clickBtn04(){
-            if(!abrirBtn04){
-                abrirBtn04 = true;
-                parpadear(btn04);
-            }
-        }
 
-        function cerrar01(){
-            parpadear(btnCerrar01);
-        }
-        function cerrar02(){
-            parpadear(btnCerrar02);
-            animacionEntrada(btnAtras, 'default', 1);
-            btnAtras.css({
-                'cursor': 'pointer',
-            });
-        }
-        function cerrar03(){
-            parpadear(btnCerrar03);
-        }
-        function cerrar04(){
-            parpadear(btnCerrar04);
-        }
-
-        //Boton 1
-        btn01.click(function(){
-            if(btn01.css('cursor') == 'pointer'){
+        btn01.click(function () {
+            if (btn01.css('cursor') == 'pointer') {
                 dejarParpadear(btn01, true);
-                aplicacion.reproducirAudio(audio[1], cerrar01, 1);
-                animacionEntrada(popup01, 'default', 1, 1);
+                carruselBtn1(noSlideBtn1);
             }
         });
-        btnCerrar01.click(function(){
-            if(btnCerrar01.css('cursor') == 'pointer'){
+
+        function carruselBtn1(pantalla){
+            aplicacion.reproducirAudio(audioSlidesBtn1[pantalla], botonAdelante1, 1);
+            animacionEntrada(slidesBtn1[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras1.css('display') == 'none'){
+                animacionEntrada(atras1, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante1(){
+            if(noSlideBtn1 < slidesBtn1.length -1){
+                parpadear(adelante1);
+            }
+            if(noSlideBtn1 == slidesBtn1.length -1){
+                cerrar01();
+            }
+        }
+
+        adelante1.click(function(){
+            if(adelante1.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn1[noSlideBtn1], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante1);
+                animacionSalida(adelante1, 'default', 1);
+                noSlideBtn1++;
+                setTimeout(()=>{
+                    carruselBtn1(noSlideBtn1);
+                }, 500);
+            }
+        });
+
+        atras1.click(function(){
+            if(noSlideBtn1 > 0){
+                animacionSalida(slidesBtn1[noSlideBtn1], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn1--;
+                
+                setTimeout(()=>{
+                    carruselBtn1(noSlideBtn1);
+                }, 500);
+            }
+        });
+
+        function cerrar01() {
+            parpadear(btnCerrar01);
+        }
+
+        btnCerrar01.click(function () {
+            if (btnCerrar01.css('cursor') == 'pointer') {
                 dejarParpadear(btnCerrar01);
-                animacionSalida(popup01, 'default', 1);
-                animacionSalida(btnCerrar01, 'default', 1);
+                animacionSalida(info1, 'default', 1);
 
                 setTimeout(() => {
                     clickBtn02();
@@ -169,19 +231,71 @@
         });
 
         //Boton 2
-        btn02.click(function(){
-            if(btn02.css('cursor') == 'pointer'){
+        function clickBtn02() {
+            if (!abrirBtn02) {
+                abrirBtn02 = true;
+                parpadear(btn02);
+            }
+        }
+
+        btn02.click(function () {
+            if (btn02.css('cursor') == 'pointer') {
                 dejarParpadear(btn02, true);
-                aplicacion.reproducirAudio(audio[2], siguiente, 1);
-                animacionEntrada(popup02_1, 'default', 1, 1);
+                carruselBtn2(noSlideBtn2);
             }
         });
-        btnCerrar02.click(function(){
-            if(btnCerrar02.css('cursor') == 'pointer'){
+
+        function carruselBtn2(pantalla){
+            aplicacion.reproducirAudio(audioSlidesBtn2[pantalla], botonAdelante2, 1);
+            animacionEntrada(slidesBtn2[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras2.css('display') == 'none'){
+                animacionEntrada(atras2, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante2(){
+            if(noSlideBtn2 < slidesBtn2.length -1){
+                parpadear(adelante2);
+            }
+            if(noSlideBtn2 == slidesBtn2.length -1){
+                cerrar02();
+            }
+        }
+
+        adelante2.click(function(){
+            if(adelante2.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn2[noSlideBtn2], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante2);
+                animacionSalida(adelante2, 'default', 1);
+                noSlideBtn2++;
+                setTimeout(()=>{
+                    carruselBtn2(noSlideBtn2);
+                }, 500);
+            }
+        });
+
+        atras2.click(function(){
+            if(noSlideBtn2 > 0){
+                animacionSalida(slidesBtn2[noSlideBtn2], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn2--;
+                
+                setTimeout(()=>{
+                    carruselBtn2(noSlideBtn2);
+                }, 500);
+            }
+        });
+
+        function cerrar02() {
+            parpadear(btnCerrar02);
+        }
+
+        btnCerrar02.click(function () {
+            if (btnCerrar02.css('cursor') == 'pointer') {
                 dejarParpadear(btnCerrar02);
-                animacionSalida(popup02_2, 'default', 1);
-                animacionSalida(btnCerrar02, 'default', 1);
-                animacionSalida(btnAtras, 'default', 1);
+                animacionSalida(info2, 'default', 1);
 
                 setTimeout(() => {
                     clickBtn03();
@@ -189,39 +303,73 @@
             }
         });
 
-        btnSiguiente.click(function(){
-            if(btnSiguiente.css('cursor') == 'pointer'){
-                dejarParpadear(btnSiguiente);
-                aplicacion.reproducirAudio(audio[3], cerrar02, 1);
-                animacionSalida(popup02_1, 'default', 1);
-                animacionSalida(btnSiguiente, 'default', 1);
-                animacionEntrada(popup02_2, 'default', 1);
+
+        //boton 3
+        function clickBtn03() {
+            if (!abrirBtn03) {
+                abrirBtn03 = true;
+                parpadear(btn03);
             }
-        });
-        btnAtras.click(function(){
-            if(btnAtras.css('cursor') == 'pointer'){
-                dejarParpadear(btnAtras);
-                aplicacion.reproducirAudio(audio[2], siguiente, 1);
-                animacionSalida(popup02_2, 'default', 1);
-                animacionSalida(btnAtras, 'default', 1);
-                animacionSalida(btnCerrar02, 'default', 1);
-                animacionEntrada(popup02_1, 'default', 1);
+        }
+
+        btn03.click(function () {
+            if (btn03.css('cursor') == 'pointer') {
+                dejarParpadear(btn03, true);
+                carruselBtn3(noSlideBtn3);
             }
         });
 
-        //Boton 3
-        btn03.click(function(){
-            if(btn03.css('cursor') == 'pointer'){
-                dejarParpadear(btn03, true);
-                aplicacion.reproducirAudio(audio[4], cerrar03, 1);
-                animacionEntrada(popup03, 'default', 1, 1);
+        function carruselBtn3(pantalla){
+            aplicacion.reproducirAudio(audioSlidesBtn3[pantalla], botonAdelante3, 1);
+            animacionEntrada(slidesBtn3[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras3.css('display') == 'none'){
+                animacionEntrada(atras3, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante3(){
+            if(noSlideBtn3 < slidesBtn3.length -1){
+                parpadear(adelante3);
+            }
+            if(noSlideBtn3 == slidesBtn3.length -1){
+                cerrar03();
+            }
+        }
+
+        adelante3.click(function(){
+            if(adelante3.css('cursor') == 'pointer'){
+                animacionSalida(slidesBtn3[noSlideBtn3], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante3);
+                animacionSalida(adelante3, 'default', 1);
+                noSlideBtn3++;
+                setTimeout(()=>{
+                    carruselBtn3(noSlideBtn3);
+                }, 500);
             }
         });
-        btnCerrar03.click(function(){
-            if(btnCerrar03.css('cursor') == 'pointer'){
+
+        atras3.click(function(){
+            if(noSlideBtn3 > 0){
+                animacionSalida(slidesBtn3[noSlideBtn3], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlideBtn3--;
+                
+                setTimeout(()=>{
+                    carruselBtn3(noSlideBtn3);
+                }, 500);
+            }
+        });
+
+        function cerrar03() {
+            parpadear(btnCerrar03);
+        }
+
+        btnCerrar03.click(function () {
+            if (btnCerrar03.css('cursor') == 'pointer') {
                 dejarParpadear(btnCerrar03);
-                animacionSalida(popup03, 'default', 1);
-                animacionSalida(btnCerrar03, 'default', 1);
+                animacionSalida(info3, 'default', 1);
 
                 setTimeout(() => {
                     clickBtn04();
@@ -229,16 +377,29 @@
             }
         });
 
+
+        function clickBtn04() {
+            if (!abrirBtn04) {
+                abrirBtn04 = true;
+                parpadear(btn04);
+            }
+        }
+
+        function cerrar04() {
+            parpadear(btnCerrar04);
+        }
+
+
         //Boton 4
-        btn04.click(function(){
-            if(btn04.css('cursor') == 'pointer'){
+        btn04.click(function () {
+            if (btn04.css('cursor') == 'pointer') {
                 dejarParpadear(btn04, true);
                 aplicacion.reproducirAudio(audio[5], cerrar04, 1);
                 animacionEntrada(popup04, 'default', 1, 1);
             }
         });
-        btnCerrar04.click(function(){
-            if(btnCerrar04.css('cursor') == 'pointer'){
+        btnCerrar04.click(function () {
+            if (btnCerrar04.css('cursor') == 'pointer') {
                 dejarParpadear(btnCerrar04);
                 animacionSalida(popup04, 'default', 1);
                 animacionSalida(btnCerrar04, 'default', 1);
@@ -255,4 +416,5 @@
 
     </script>
 </body>
+
 </html>

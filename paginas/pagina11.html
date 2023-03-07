@@ -21,9 +21,14 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="subtitulo" src="../img/pagina11/subtitulo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info" src="../img/pagina11/info.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="grafica" src="../img/pagina11/grafica.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtitulo" src="../img/pagina11/subtitulo.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="cuadro1" src="../img/pagina11/cuadro1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2" src="../img/pagina11/cuadro2.png" data-posX="0" data-posY="0"/>
+
+    <img class="elementos" id="atras" src="../img/pagina11/atras.png" data-posX="24.394" data-posY="318"/>
+    <img class="elementos" id="adelante" src="../img/pagina11/adelante.png" data-posX="959.584" data-posY="318"/>
+
 
     <!-- Script de la página -->
     <script>
@@ -32,12 +37,21 @@
         let aplicacion = parent;
 
         const subtitulo = $('#subtitulo');
-        const info = $('#info');
-        const grafica = $('#grafica');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2');
+        const atras = $('#atras');
+        const adelante = $('#adelante');
+
+        atras.css('cursor', 'pointer');
+        const slides = [cuadro1, cuadro2];
+        let noSlide = 0
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_11_01.mp3'),
+            new Audio('../audios/Patria_Administración_11_01.mp3')
+        ]
+        
+        const audiosSlides = [
             new Audio('../audios/Patria_Administración_11_02.mp3'),
             new Audio('../audios/Patria_Administración_11_03.mp3'),
         ]
@@ -49,23 +63,56 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], siguienteAudio, 1);
-            animacionEntrada(subtitulo, 'default', 1, 1);
-
-        }
-        function siguienteAudio(){
-            aplicacion.reproducirAudio(audio[1], infoGrafica, 1);
-            animacionEntrada(info, 'derecha-izquierda', 1);
-        }
-        function infoGrafica(){
-            aplicacion.reproducirAudio(audio[2], finalPagina, 1);
-            animacionEntrada(grafica, 'derecha-izquierda', 1);
+            aplicacion.reproducirAudio(audio[0], actividad, 1);
+            animacionEntrada(subtitulo, 'izquierda-derecha', 1)
         }
 
-        function finalPagina(){
-            aplicacion.terminaPantalla();
+        function actividad(){
+            carrusel(noSlide)
         }
 
+        function carrusel(pantalla){
+            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+            animacionEntrada(slides[pantalla], 'default', 1);
+
+            if(pantalla > 0 & atras.css('display') == 'none'){
+                animacionEntrada(atras, 'default', 1, 1);
+            }
+        }
+
+        function botonAdelante(){
+            if(noSlide < slides.length -1){
+                parpadear(adelante);
+            }
+            if(noSlide == slides.length -1){
+                aplicacion.terminaPantalla();
+            }
+        }
+
+        adelante.click(function(){
+            if(adelante.css('cursor') == 'pointer'){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                dejarParpadear(adelante);
+                animacionSalida(adelante, 'default', 1);
+                noSlide++;
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
+
+        atras.click(function(){
+            if(noSlide > 0){
+                animacionSalida(slides[noSlide], 'default', 1);
+                aplicacion.detenerAudios();
+                noSlide--;
+                
+                setTimeout(()=>{
+                    carrusel(noSlide);
+                }, 500);
+            }
+        });
 
     </script>
 </body>
