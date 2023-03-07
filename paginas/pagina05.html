@@ -27,30 +27,19 @@
     <img class="elementos" id="btn01" src="../img/pagina05/btn01.png" data-posX="34" data-posY="261" alt="">
     <img class="elementos" id="btn02" src="../img/pagina05/btn02.png" data-posX="34" data-posY="351" alt="">
 
-    <img class="elementos" id="btn01_3" src="../img/pagina05/btn01_3.png" data-posX="612" data-posY="179" alt="">
     <img class="elementos" id="btn01_2" src="../img/pagina05/btn01_2.png" data-posX="462" data-posY="179" alt="">
     <img class="elementos" id="btn01_1" src="../img/pagina05/btn01_1.png" data-posX="313" data-posY="179" alt="">
     
-    <img class="elementos" id="btn02_3" src="../img/pagina05/btn02_3.png" data-posX="612" data-posY="179" alt="">
     <img class="elementos" id="btn02_2" src="../img/pagina05/btn02_2.png" data-posX="462" data-posY="179" alt="">
     <img class="elementos" id="btn02_1" src="../img/pagina05/btn02_1.png" data-posX="313" data-posY="179" alt="">
 
     <img class="elementos" id="info01_1" src="../img/pagina05/info01_1.png" data-posX="357" data-posY="292" alt="">
-    <img class="elementos" id="info01_2" src="../img/pagina05/info01_2.png" data-posX="318" data-posY="301" alt="">
-    <img class="elementos" id="info01_3_1" src="../img/pagina05/info01_3_1.png" data-posX="364" data-posY="302" alt="">
-    <img class="elementos" id="info01_3_2" src="../img/pagina05/info01_3_2.png" data-posX="364" data-posY="302" alt="">
+    <img class="elementos" id="info01_2" src="../img/pagina05/info01_2.png" data-posX="310" data-posY="278.66" alt="">
 
     <img class="elementos" id="info02_1" src="../img/pagina05/info02_1.png" data-posX="357" data-posY="292" alt="">
     <img class="elementos" id="info02_2" src="../img/pagina05/info02_2.png" data-posX="303" data-posY="290" alt="">
-    <img class="elementos" id="info02_3_1" src="../img/pagina05/info02_3_1.png" data-posX="364" data-posY="302" alt="">
-    <img class="elementos" id="info02_3_2" src="../img/pagina05/info02_3_2.png" data-posX="364" data-posY="302" alt="">
 
-    <img class="elementos" id="btnSiguiente01" src="../img/pagina05/btnSiguiente01.png" data-posX="975" data-posY="366" alt="">
-    <img class="elementos" id="btnAtras01" src="../img/pagina05/btnAtras01.png" data-posX="295" data-posY="366" alt="">
-    <img class="elementos" id="btnSiguiente02" src="../img/pagina05/btnSiguiente02.png" data-posX="975" data-posY="366" alt="">
-    <img class="elementos" id="btnAtras02" src="../img/pagina05/btnAtras02.png" data-posX="295" data-posY="366" alt="">
-
-    <img class="elementos" id="btnNota" src="../img/pagina05/btnNota.png" data-posX="488" data-posY="425" alt="">
+    <img class="elementos" id="btnNota" src="../img/pagina05/btnNota.png" data-posX="726.959" data-posY="448" alt="">
     <img class="elementos" id="popup" src="../img/pagina05/popup.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="btnCerrar" src="../img/pagina05/btnCerrar.png" data-posX="809" data-posY="141" alt="">
 
@@ -68,26 +57,15 @@
 
         const btn01_1 = $('#btn01_1');
         const btn01_2 = $('#btn01_2');
-        const btn01_3 = $('#btn01_3');
 
         const btn02_1 = $('#btn02_1');
         const btn02_2 = $('#btn02_2');
-        const btn02_3 = $('#btn02_3');
 
         const info01_1 = $('#info01_1');
         const info01_2 = $('#info01_2');
-        const info01_3_1 = $('#info01_3_1');
-        const info01_3_2 = $('#info01_3_2');
 
         const info02_1 = $('#info02_1');
         const info02_2 = $('#info02_2');
-        const info02_3_1 = $('#info02_3_1');
-        const info02_3_2 = $('#info02_3_2');
-
-        const btnSiguiente01 = $('#btnSiguiente01');
-        const btnAtras01 = $('#btnAtras01');
-        const btnSiguiente02 = $('#btnSiguiente02');
-        const btnAtras02 = $('#btnAtras02');
 
         const btnNota = $('#btnNota');
         const popup = $('#popup');
@@ -98,11 +76,9 @@
 
         let observandoBtn01_1 = false;
         let observandoBtn01_2 = false;
-        let observandoBtn01_3 = false;
 
         let observandoBtn02_1 = false;
         let observandoBtn02_2 = false;
-        let observandoBtn02_3 = false;
 
         let abrirBtn01 = false;
         let abrirBtn01_1 = false;
@@ -125,10 +101,6 @@
             new Audio('../audios/Patria_Administración_05_07.mp3'),
             new Audio('../audios/Patria_Administración_05_08.mp3'),
             new Audio('../audios/Patria_Administración_05_09.mp3'),
-            new Audio('../audios/Patria_Administración_05_10.mp3'),
-            new Audio('../audios/Patria_Administración_05_11.mp3'),
-            new Audio('../audios/Patria_Administración_05_12.mp3'),
-            new Audio('../audios/Patria_Administración_05_13.mp3'),
         ]
 
         // Al cargarse la página
@@ -170,35 +142,14 @@
             parpadear(btnCerrar);
         }
 
-        
-        function clickBtn01_3(){
-            observandoBtn01_2 = false;
-
-            if(!abrirBtn01_3){
-                abrirBtn01_3 = true;
-                parpadear(btn01_3);
-            }
-
-        }
-        function clickBtnSiguiente01(){
-            parpadear(btnSiguiente01)
-        }
-
 
         function clickBtn02(){
             if(!abrirBtn02){
                 abrirBtn02= true;
                 parpadear(btn02);
             }
-
-            observandoBtn01_3 = false;
             observandoBtn01 = false;
-
-            animacionEntrada(btnAtras01, 'default', 1);
-            btnAtras01.css({
-                'cursor': 'pointer',
-                'opacity': 1
-            });
+            observandoBtn01_2 = false;
         }
         function clickBtn02_1(){
             if(!abrirBtn02_1){
@@ -214,67 +165,37 @@
                 parpadear(btn02_2);
             }
         }
-        function clickBtn02_3(){
-            observandoBtn02_2 = false;
-            
-            if(!abrirBtn02_3){
-                abrirBtn02_3 = true;
-                parpadear(btn02_3);
-            }
-        }
-        function clickBtnSiguiente02(){
-            parpadear(btnSiguiente02)
-        }
 
         function finalPagina(){
             aplicacion.terminaPantalla();
             observandoBtn02 = false;
             observandoBtn02_3 = false;
-            animacionEntrada(btnAtras02, 'default', 1);
-            btnAtras02.css({
-                'cursor': 'pointer',
-                'opacity': 1
-            });
         }
 
 
         //Funcionalidad Boton Año Calendario
         btn01.click(function(){
-            if(btn01.css('cursor') == 'pointer' && !observandoBtn02  && !observandoBtn01_1 && !observandoBtn01_2  && !observandoBtn02_1 && !observandoBtn02_2 && !observandoBtn02_3){
+            if(btn01.css('cursor') == 'pointer' && !observandoBtn02  && !observandoBtn01_1 && !observandoBtn01_2  && !observandoBtn02_1 && !observandoBtn02_2){
                 dejarParpadear(btn01, true);
                 aplicacion.reproducirAudio(audio[2], clickBtn01_1, 1);
                 animacionSalida(info01_1, 'default', 1);
                 animacionSalida(info01_2, 'default', 1);
-                animacionSalida(info01_3_1, 'default', 1);
-                animacionSalida(info01_3_2, 'default', 1);
                 animacionSalida(btnNota, 'default', 1);
-                animacionSalida(btnAtras01, 'default', 1);
-                animacionSalida(btnSiguiente01, 'default', 1);
-                animacionSalida(btnAtras02, 'default', 1);
-                animacionSalida(btnSiguiente02, 'default', 1);
-
 
                 animacionEntrada(btn01_1, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(btn01_2, 'arriba-abajo', 1, 2.5);
-                animacionEntrada(btn01_3, 'arriba-abajo', 1, 3);
-                
+                animacionEntrada(btn01_2, 'arriba-abajo', 1, 2.5);                
                 observandoBtn01 = true;
             }
         });
 
         //Funcionalidad Boton Año Calendario - Significado
         btn01_1.click(function(){
-            if(btn01_1.css('cursor') == 'pointer' && !observandoBtn01_2 && !observandoBtn01_3){
+            if(btn01_1.css('cursor') == 'pointer' && !observandoBtn01_2){
                 dejarParpadear(btn01_1, true);
                 aplicacion.reproducirAudio(audio[3], clickBtnNota, 1);
 
                 animacionSalida(info01_2, 'default', 1);
-                animacionSalida(info01_3_1, 'default', 1);
-                animacionSalida(info01_3_2, 'default', 1);
-                animacionSalida(btnAtras01, 'default', 1);
-                animacionSalida(btnSiguiente01, 'default', 1);
-
-                animacionEntrada(info01_1, 'default', 1);
+                animacionEntrada(info01_1, 'default', 1, 1);
 
                 observandoBtn01_1 = true;
             }
@@ -284,7 +205,7 @@
         btnNota.click(function(){
             if(btnNota.css('cursor') == 'pointer'){
                 dejarParpadear(btnNota, true);
-                aplicacion.reproducirAudio(audio[4], cerrar, 1);
+                aplicacion.reproducirAudio(audio[7], cerrar, 1);
                 animacionEntrada(popup, 'default', 1);
             }
         });
@@ -308,82 +229,32 @@
 
         //Funcionalidad Boton Año Calendario - Ejemplo
         btn01_2.click(function(){
-            if(btn01_2.css('cursor') == 'pointer' && !observandoBtn01_1 && !observandoBtn01_3){
+            if(btn01_2.css('cursor') == 'pointer' && !observandoBtn01_1){
                 dejarParpadear(btn01_2, true);
-                aplicacion.reproducirAudio(audio[5], clickBtn01_3, 1);
-                animacionSalida(info01_3_1, 'default', 1);
-                animacionSalida(info01_3_2, 'default', 1);
+                aplicacion.reproducirAudio(audio[4], clickBtn02, 1);
                 animacionSalida(info01_1, 'default', 1);
                 animacionSalida(btnNota, 'default', 1);
-                animacionSalida(btnAtras01, 'default', 1);
-                animacionSalida(btnSiguiente01, 'default', 1);
-
                 animacionEntrada(info01_2, 'default', 1, 1);
 
                 observandoBtn01_2 = true;
             }
         });
 
-        //Funcionalidad Boton Año Calendario - Sistema de cierre de contrato
-        btn01_3.click(function(){
-            if(btn01_3.css('cursor') == 'pointer' && !observandoBtn01_1 && !observandoBtn01_2){
-                dejarParpadear(btn01_3, true);
-                aplicacion.reproducirAudio(audio[6], clickBtnSiguiente01, 1);
-                animacionSalida(info01_1, 'default', 1);
-                animacionSalida(info01_2, 'default', 1);
-                animacionSalida(btnNota, 'default', 1);
-
-                animacionSalida(info01_2, 'default', 1);
-                animacionEntrada(info01_3_1, 'default', 1, 1);
-
-                observandoBtn01_3 = true;
-            }
-        });
-        btnSiguiente01.click(function(){
-            if(btnSiguiente01.css('cursor') == 'pointer'){
-                dejarParpadear(btnSiguiente01);
-                aplicacion.reproducirAudio(audio[7], clickBtn02, 1);
-                animacionSalida(info01_3_1, 'default', 1);
-                animacionSalida(btnSiguiente01, 'default', 1);
-                animacionEntrada(info01_3_2, 'default', 1, 1);
-            }
-        });
-        btnAtras01.click(function(){
-            if(btnAtras01.css('cursor') == 'pointer'){
-                dejarParpadear(btnAtras01);
-                aplicacion.reproducirAudio(audio[6], clickBtnSiguiente01, 1);
-                animacionSalida(info01_3_2, 'default', 1);
-                animacionSalida(btnAtras01, 'default', 1);
-                animacionEntrada(info01_3_1, 'default', 1, 1);
-            }
-        });
 
         //Funcionalidad Boton Año Calendario
         btn02.click(function(){
-            if(btn02.css('cursor') == 'pointer' && !observandoBtn01 && !observandoBtn02_1 && !observandoBtn02_2 && !observandoBtn02_3 && !observandoBtn01_1 && !observandoBtn01_2 && !observandoBtn01_3){
+            if(btn02.css('cursor') == 'pointer' && !observandoBtn01 && !observandoBtn02_1 && !observandoBtn02_2 && !observandoBtn01_1 && !observandoBtn01_2){
                 dejarParpadear(btn02, true);
-                aplicacion.reproducirAudio(audio[8], clickBtn02_1, 1);
+                aplicacion.reproducirAudio(audio[5], clickBtn02_1, 1);
                 animacionSalida(btn01_1, 'default', 1);
                 animacionSalida(btn01_2, 'default', 1);
-                animacionSalida(btn01_3, 'default', 1);
-                animacionSalida(info01_3_1, 'default', 1);
-                animacionSalida(info01_3_2, 'default', 1);
                 animacionSalida(info01_1, 'default', 1);
                 animacionSalida(info01_2, 'default', 1);
                 animacionSalida(btnNota, 'default', 1);
-                animacionSalida(btnAtras01, 'default', 1);
-                animacionSalida(btnSiguiente01, 'default', 1);
                 animacionSalida(info02_1, 'default', 1);
                 animacionSalida(info02_2, 'default', 1);
-                animacionSalida(info02_3_1, 'default', 1);
-                animacionSalida(info02_3_2, 'default', 1);
-                animacionSalida(btnSiguiente02, 'default', 1);
-                animacionSalida(btnAtras02, 'default', 1);
-
                 animacionEntrada(btn02_1, 'arriba-abajo', 1, 1.5);
                 animacionEntrada(btn02_2, 'arriba-abajo', 1, 2.5);
-                animacionEntrada(btn02_3, 'arriba-abajo', 1, 3);
-
                 observandoBtn02 = true;
 
             }
@@ -391,73 +262,26 @@
 
         //Funcionalidad Boton Año Suscripcion - Significado
         btn02_1.click(function(){
-            if(btn02_1.css('cursor') == 'pointer' && !observandoBtn02_2 && !observandoBtn02_3 && !observandoBtn01_1 && !observandoBtn01_2 && !observandoBtn01_3){
+            if(btn02_1.css('cursor') == 'pointer' && !observandoBtn02_2 && !observandoBtn01_1 && !observandoBtn01_2){
                 dejarParpadear(btn02_1, true);
-                aplicacion.reproducirAudio(audio[9], clickBtn02_2, 1);
+                aplicacion.reproducirAudio(audio[6], clickBtn02_2, 1);
                 animacionSalida(info02_2, 'default', 1);
-                animacionSalida(info02_3_1, 'default', 1);
-                animacionSalida(info02_3_2, 'default', 1);
-                animacionSalida(btnSiguiente02, 'default', 1);
-                animacionSalida(btnAtras02, 'default', 1);
-
-                animacionEntrada(info02_1, 'default', 1);
+                animacionEntrada(info02_1, 'default', 1, 1);
 
                 observandoBtn02_1 = true;
             }
         });
         //Funcionalidad Boton Año Suscripcion - Ejemplo
         btn02_2.click(function(){
-            if(btn02_2.css('cursor') == 'pointer'  && !observandoBtn02_1 && !observandoBtn02_3){
+            if(btn02_2.css('cursor') == 'pointer'  && !observandoBtn02_1){
                 dejarParpadear(btn02_2, true);
-                aplicacion.reproducirAudio(audio[10], clickBtn02_3, 1);
+                aplicacion.reproducirAudio(audio[8], finalPagina, 1);
                 animacionSalida(info02_1, 'default', 1);
-                animacionSalida(info02_3_1, 'default', 1);
-                animacionSalida(info02_3_2, 'default', 1);
-                animacionSalida(btnSiguiente02, 'default', 1);
-                animacionSalida(btnAtras02, 'default', 1);
-
                 animacionEntrada(info02_2, 'default', 1, 1);
 
                 observandoBtn02_2 = true;
             }
         });
-
-        //Funcionalidad Boton Año Suscripcion - Sistema de cierre de contrato
-        btn02_3.click(function(){
-            if(btn02_3.css('cursor') == 'pointer' && !observandoBtn02_1 && !observandoBtn02_2){
-                dejarParpadear(btn02_3, true);
-                aplicacion.reproducirAudio(audio[11], clickBtnSiguiente02, 1);
-                animacionSalida(info02_2, 'default', 1);
-                animacionSalida(info02_1, 'default', 1);
-
-                animacionEntrada(info02_3_1, 'default', 1, 1);
-
-                observandoBtn02_3 = true;
-            }
-        });
-        btnSiguiente02.click(function(){
-            if(btnSiguiente02.css('cursor') == 'pointer'){
-                dejarParpadear(btnSiguiente02);
-                aplicacion.reproducirAudio(audio[12], finalPagina, 1);
-                animacionSalida(info02_3_1, 'default', 1);
-                animacionSalida(btnSiguiente02, 'default', 1);
-                animacionEntrada(info02_3_2, 'default', 1, 1);
-            }
-        });
-        btnAtras02.click(function(){
-            if(btnAtras02.css('cursor') == 'pointer'){
-                dejarParpadear(btnAtras02);
-                aplicacion.reproducirAudio(audio[11], clickBtnSiguiente02, 1);
-                animacionSalida(info02_3_2, 'default', 1);
-                animacionSalida(btnAtras02, 'default', 1);
-                animacionEntrada(info02_3_1, 'default', 1, 1);
-            }
-        });
-
-
-
-
-
     </script>
 </body>
 </html>
