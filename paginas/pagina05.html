@@ -192,7 +192,7 @@
         btn01_1.click(function(){
             if(btn01_1.css('cursor') == 'pointer' && !observandoBtn01_2){
                 dejarParpadear(btn01_1, true);
-                aplicacion.reproducirAudio(audio[3], clickBtnNota, 1);
+                aplicacion.reproducirAudio(audio[3], clickBtn01_2, 1);
 
                 animacionSalida(info01_2, 'default', 1);
                 animacionEntrada(info01_1, 'default', 1, 1);
@@ -200,6 +200,15 @@
                 observandoBtn01_1 = true;
             }
         });
+
+        function clickBtn01_2(){
+            observandoBtn01_1 = false;
+
+            if(!abrirBtn01_2){
+                abrirBtn01_2 = true;
+                parpadear(btn01_2)
+            }    
+        }
 
         //Funcionalidad Boton Año Calendario - Significado - Nota
         btnNota.click(function(){
@@ -216,13 +225,8 @@
                 animacionSalida(popup, 'default', 1);
                 animacionSalida(btnCerrar, 'default', 1);
 
-                observandoBtn01_1 = false;
-
                 setTimeout(() => {
-                    if(!abrirBtn01_2){
-                        abrirBtn01_2 = true;
-                        parpadear(btn01_2)
-                    }         
+                    clickBtn02_2();
                 }, 1000);
             }
         });
@@ -264,7 +268,7 @@
         btn02_1.click(function(){
             if(btn02_1.css('cursor') == 'pointer' && !observandoBtn02_2 && !observandoBtn01_1 && !observandoBtn01_2){
                 dejarParpadear(btn02_1, true);
-                aplicacion.reproducirAudio(audio[6], clickBtn02_2, 1);
+                aplicacion.reproducirAudio(audio[6],  clickBtnNota, 1);
                 animacionSalida(info02_2, 'default', 1);
                 animacionEntrada(info02_1, 'default', 1, 1);
 
@@ -277,6 +281,7 @@
                 dejarParpadear(btn02_2, true);
                 aplicacion.reproducirAudio(audio[8], finalPagina, 1);
                 animacionSalida(info02_1, 'default', 1);
+                animacionSalida(btnNota, 'default', 1);
                 animacionEntrada(info02_2, 'default', 1, 1);
 
                 observandoBtn02_2 = true;
