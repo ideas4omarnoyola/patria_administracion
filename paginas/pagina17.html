@@ -43,7 +43,6 @@
 
     <img class="elementos info2" id="popup02_1" src="../img/pagina17/popup02_1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos info2" id="popup02_2" src="../img/pagina17/popup02_2.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos info2" id="popup02_3" src="../img/pagina17/popup02_3.png" data-posX="0" data-posY="0" alt="">
 
     <img class="elementos info3" id="popup03_1" src="../img/pagina17/popup03_1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos info3" id="popup03_2" src="../img/pagina17/popup03_2.png" data-posX="0" data-posY="0" alt="">
@@ -82,7 +81,6 @@
         const popup01_2 = $('#popup01_2');
         const popup02_1 = $('#popup02_1');
         const popup02_2 = $('#popup02_2');
-        const popup02_3 = $('#popup02_3');
         const popup03_1 = $('#popup03_1');
         const popup03_2 = $('#popup03_2');
         const popup04 = $('#popup04');
@@ -106,7 +104,7 @@
         const slidesBtn1 = [popup01_1, popup01_2];
         let noSlideBtn1 = 0
 
-        const slidesBtn2 = [popup02_1, popup02_2, popup02_3];
+        const slidesBtn2 = [popup02_1, popup02_2];
         let noSlideBtn2 = 0
 
         const slidesBtn3 = [popup03_1, popup03_2];
@@ -121,6 +119,7 @@
         const audio = [
             new Audio('../audios/Patria_Administración_17_01.mp3'),
             new Audio('../audios/Patria_Administración_17_02.mp3'),
+            new Audio('../audios/Patria_Administración_17_09.mp3'),
         ]
 
         const audioSlidesBtn1 = [
@@ -131,12 +130,11 @@
         const audioSlidesBtn2 = [
             new Audio('../audios/Patria_Administración_17_05.mp3'),
             new Audio('../audios/Patria_Administración_17_06.mp3'),
-            new Audio('../audios/Patria_Administración_17_07.mp3'),
         ]
 
         const audioSlidesBtn3 = [
+            new Audio('../audios/Patria_Administración_17_07.mp3'),
             new Audio('../audios/Patria_Administración_17_08.mp3'),
-            new Audio('../audios/Patria_Administración_17_09.mp3'),
         ]
 
         // Al cargarse la página
@@ -146,13 +144,17 @@
         });
 
         function iniciarContenido() {
-            aplicacion.reproducirAudio(audio[0], clickBtn01, 1);
+            aplicacion.reproducirAudio(audio[0], locutaInstrucciones, 1);
             animacionEntrada(fondo, 'default', 1);
-            animacionEntrada(instrucciones, 'izquierda-derecha', 1, 5);
-            animacionEntrada(btn01, 'izquierda-derecha', 1, 5.5);
-            animacionEntrada(btn02, 'izquierda-derecha', 1, 6);
-            animacionEntrada(btn03, 'izquierda-derecha', 1, 6.5);
-            animacionEntrada(btn04, 'izquierda-derecha', 1, 7);
+        }
+
+        function locutaInstrucciones() {
+            aplicacion.reproducirAudio(audio[1], clickBtn01, 1);
+            animacionEntrada(btn01, 'izquierda-derecha', 1, 4);
+            animacionEntrada(btn02, 'izquierda-derecha', 1, 4.5);
+            animacionEntrada(btn03, 'izquierda-derecha', 1, 5);
+            animacionEntrada(btn04, 'izquierda-derecha', 1, 5.5);
+            animacionEntrada(instrucciones, 'izquierda-derecha', 1, 20);
         }
 
 
@@ -394,7 +396,7 @@
         btn04.click(function () {
             if (btn04.css('cursor') == 'pointer') {
                 dejarParpadear(btn04, true);
-                aplicacion.reproducirAudio(audio[5], cerrar04, 1);
+                aplicacion.reproducirAudio(audio[2], cerrar04, 1);
                 animacionEntrada(popup04, 'default', 1, 1);
             }
         });
