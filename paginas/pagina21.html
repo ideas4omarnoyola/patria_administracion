@@ -21,54 +21,36 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="texto" src="../img/pagina21/texto.png" data-posX="0" data-posY="0"/>
 
-    <img class="elementos" id="cuadro1" src="../img/pagina21/cuadro1.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro2" src="../img/pagina21/cuadro2.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro3" src="../img/pagina21/cuadro3.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro4" src="../img/pagina21/cuadro4.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro5" src="../img/pagina21/cuadro5.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro6" src="../img/pagina21/cuadro6.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro7" src="../img/pagina21/cuadro7.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="fondo" src="../img/pagina21/fondo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton1" src="../img/pagina21/boton1.png" data-posX="34.059" data-posY="261"/>
+    <img class="elementos" id="boton2" src="../img/pagina21/boton2.png" data-posX="34.059" data-posY="351.79"/>
+    <img class="elementos" id="info1" src="../img/pagina21/info1.png" data-posX="362.57" data-posY="261"/>  
+    <img class="elementos" id="info2" src="../img/pagina21/info2.png" data-posX="362.57" data-posY="302"/>  
 
-    <img class="elementos" id="atras" src="../img/pagina21/atras.png" data-posX="23" data-posY="271"/>
-    <img class="elementos" id="adelante" src="../img/pagina21/adelante.png" data-posX="946" data-posY="271"/>
-
-
+    
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
+        const fondo = $('#fondo');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
 
-        const texto = $('#texto');
-        const cuadro1 = $('#cuadro1');
-        const cuadro2 = $('#cuadro2');
-        const cuadro3 = $('#cuadro3');
-        const cuadro4 = $('#cuadro4');
-        const cuadro5 = $('#cuadro5');
-        const cuadro6 = $('#cuadro6');
-        const cuadro7 = $('#cuadro7');
-        const atras = $('#atras');
-        const adelante = $('#adelante');
+        let observandoBtn1 = false;
+        let observandoBtn2 = false;
 
-        atras.css('cursor', 'pointer');
-
-        const slides = [cuadro1, cuadro2, cuadro3, cuadro4, cuadro5];
-
-        let noSlide = 0
+        let abrirBtn1 = false;
+        let abrirBtn2 = false;
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_21_01.mp3')
-        ]
-        
-        const audiosSlides = [
+            new Audio('../audios/Patria_Administración_21_01.mp3'),
             new Audio('../audios/Patria_Administración_21_02.mp3'),
             new Audio('../audios/Patria_Administración_21_03.mp3'),
-            new Audio('../audios/Patria_Administración_21_04.mp3'),
-            new Audio('../audios/Patria_Administración_21_05.mp3'),
-            new Audio('../audios/Patria_Administración_21_06.mp3')
         ]
 
         // Al cargarse la página
@@ -78,56 +60,56 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], actividad, 1);
-            animacionEntrada(texto, 'izquierda-derecha', 1)
+            aplicacion.reproducirAudio(audio[0], activarBoton1, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(boton1, 'default', 1, 1);
+            animacionEntrada(boton2, 'default', 1, 1);
         }
 
-        function actividad(){
-            carrusel(noSlide)
-        }
-
-        function carrusel(pantalla){
-            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
-            animacionEntrada(slides[pantalla], 'default', 1);
-
-            if(pantalla > 0 & atras.css('display') == 'none'){
-                animacionEntrada(atras, 'default', 1, 1);
+        function activarBoton1(){
+            if(!abrirBtn1){
+                abrirBtn1 = true;
+                parpadear(boton1);
             }
         }
 
-        function botonAdelante(){
-            if(noSlide < slides.length -1){
-                parpadear(adelante);
-            }
-            if(noSlide == slides.length -1){
-                aplicacion.terminaPantalla();
-            }
-        }
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer' && !observandoBtn2){
+                dejarParpadear(boton1, true);
+                animacionSalida(info2, 'default', 1);
 
-        adelante.click(function(){
-            if(adelante.css('cursor') == 'pointer'){
-                animacionSalida(slides[noSlide], 'default', 1);
-                aplicacion.detenerAudios();
-                dejarParpadear(adelante);
-                animacionSalida(adelante, 'default', 1);
-                noSlide++;
-                setTimeout(()=>{
-                    carrusel(noSlide);
-                }, 500);
+                aplicacion.reproducirAudio(audio[1], activarBoton2, 1);
+                animacionEntrada(info1, 'default', 1, 1);
+
+                observandoBtn1 = true;
             }
         });
 
-        atras.click(function(){
-            if(noSlide > 0){
-                animacionSalida(slides[noSlide], 'default', 1);
-                aplicacion.detenerAudios();
-                noSlide--;
-                
-                setTimeout(()=>{
-                    carrusel(noSlide);
-                }, 500);
+        function activarBoton2(){
+            observandoBtn1 = false;
+
+            if(!abrirBtn2){
+                abrirBtn2 = true;
+                parpadear(boton2);
+            }
+        }
+
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer' && !observandoBtn1){
+                dejarParpadear(boton2, true);
+                animacionSalida(info1, 'default', 1);
+
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+                animacionEntrada(info2, 'default', 1, 1);
+
+                observandoBtn2 = true;
             }
         });
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+            observandoBtn2 = false;
+        }
 
     </script>
 </body>

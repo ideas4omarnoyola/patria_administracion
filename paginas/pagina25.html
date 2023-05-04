@@ -23,23 +23,8 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina25/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="boton1" src="../img/pagina25/boton1.png" data-posX="634" data-posY="327"/>
-    <img class="elementos" id="boton2" src="../img/pagina25/boton2.png" data-posX="743" data-posY="327"/>
-    <img class="elementos" id="pop1" src="../img/pagina25/pop1.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="pop2" src="../img/pagina25/pop2.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cuadro1" src="../img/pagina25/cuadro1.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cuadro2" src="../img/pagina25/cuadro2.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro3" src="../img/pagina25/cuadro3.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro4" src="../img/pagina25/cuadro4.png" data-posX="0" data-posY="0"/>
-    
-    <img class="elementos" id="adelante1" src="../img/pagina25/adelante.png" data-posX="572" data-posY="289"/>
-    <img class="elementos" id="atras1" src="../img/pagina25/atras.png" data-posX="51" data-posY="289"/>
-    
-    <img class="elementos" id="adelante2" src="../img/pagina25/adelante.png" data-posX="657" data-posY="289"/>
-    <img class="elementos" id="atras2" src="../img/pagina25/atras.png" data-posX="134" data-posY="289"/>
-    
-    <img class="elementos" id="cerrar1" src="../img/pagina25/cerrar.png" data-posX="558" data-posY="98"/>
-    <img class="elementos" id="cerrar2" src="../img/pagina25/cerrar.png" data-posX="644" data-posY="98"/>
 
     
     <!-- Script de la página -->
@@ -48,46 +33,13 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const boton1 = $('#boton1');
-        const boton2 = $('#boton2');
-        const pop1 = $('#pop1');
-        const pop2 = $('#pop2');
         const cuadro1 = $('#cuadro1');
         const cuadro2 = $('#cuadro2');
-        const cuadro3 = $('#cuadro3');
-        const cuadro4 = $('#cuadro4');
-        const adelante1 = $('#adelante1');
-        const adelante2 = $('#adelante2');
-        const atras1 = $('#atras1');
-        const atras2 = $('#atras2');
-        const cerrar1 = $('#cerrar1');
-        const cerrar2 = $('#cerrar2');
-
-        atras1.css('cursor', 'pointer');
-        atras2.css('cursor', 'pointer');
-
-        const slides1 = [cuadro1, cuadro2];
-        const slides2 = [cuadro3, cuadro4];
-
-        indexAudio = 0;
-        noSlideP1 = 0;
-        noSlideP2 = 0;
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_25_01.mp3'),
-            new Audio('../audios/Patria_Administración_25_02.mp3'),
-            new Audio('../audios/Patria_Administración_25_03.mp3')
-        ]
-
-        audioPop1 = [
-            new Audio('../audios/Patria_Administración_25_04.mp3'),
-            new Audio('../audios/Patria_Administración_25_05.mp3'),
-        ]
-
-        audioPop2 = [
-            new Audio('../audios/Patria_Administración_25_06.mp3'),
-            new Audio('../audios/Patria_Administración_25_07.mp3'),
+            new Audio('../audios/Patria_Administración_25_02.mp3')
         ]
 
         // Al cargarse la página
@@ -97,150 +49,19 @@
         });
 
         function iniciarContenido(){
-            locutarAudio();
+            aplicacion.reproducirAudio(audio[0], cuadro, 1);
             animacionEntrada(texto, 'default', 1, 1);
-            animacionEntrada(boton1, 'default', 1, 1);
-            animacionEntrada(boton2, 'default', 1, 1);
+            animacionEntrada(cuadro1, 'default', 1, 1);
         }
 
-        function locutarAudio(){
-            aplicacion.reproducirAudio(audio[indexAudio], siguiente, 1);
+        function cuadro(){
+            aplicacion.reproducirAudio(audio[1], finalPantalla, 1);
+            animacionEntrada(cuadro2, 'default', 1, 1);
         }
 
-        function siguiente(){
-            indexAudio++;
-
-            if(indexAudio < audio.length){
-                locutarAudio();
-            }
-            else{
-                parpadear(boton1);
-            }
-        }
-
-        boton1.click(function(){
-            if(boton1.css('cursor') == 'pointer'){
-                dejarParpadear(boton1);
-                animacionEntrada(pop1, 'default', 1, 1);
-                carrusel();
-            }
-        });
-
-        boton2.click(function(){
-            if(boton2.css('cursor') == 'pointer'){
-                dejarParpadear(boton2);
-                animacionEntrada(pop2, 'default', 1, 1);
-                carrusel2();
-            }
-        });
-
-        function carrusel(){
-            aplicacion.reproducirAudio(audioPop1[noSlideP1], botonAdelante1, 1);
-            animacionEntrada(slides1[noSlideP1], 'default', 1, 1);
-
-            if(noSlideP1 > 0 & atras1.css('display') == 'none'){
-                animacionEntrada(atras1, 'default', 1, 1);
-            }
-        }
-
-        function botonAdelante1(){
-            if(noSlideP1 < slides1.length -1){
-                parpadear(adelante1);
-            }
-            if(noSlideP1 == slides1.length -1){
-                parpadear(cerrar1)
-            }
-        }
-
-        adelante1.click(function(){
-            if(adelante1.css('cursor') == 'pointer'){
-                animacionSalida(slides1[noSlideP1], 'default', 1);
-                aplicacion.detenerAudios();
-                dejarParpadear(adelante1);
-                animacionSalida(adelante1, 'default', 1);
-                noSlideP1++;
-                setTimeout(()=>{
-                    carrusel();
-                }, 500);
-            }
-        });
-
-        atras1.click(function(){
-            if(noSlideP1 > 0){
-                animacionSalida(slides1[noSlideP1], 'default', 1);
-                aplicacion.detenerAudios();
-                noSlideP1--;
-                
-                setTimeout(()=>{
-                    carrusel();
-                }, 500);
-            }
-        });
-
-        cerrar1.click(function(){
-            dejarParpadear(cerrar1);
-            animacionSalida(cuadro2, 'default', 1);
-            animacionSalida(pop1, 'default', 1);
-            animacionSalida(cerrar1, 'default', 1);
-            animacionSalida(adelante1, 'default', 1);
-            animacionSalida(atras1, 'default', 1);
-            parpadear(boton2);
-        });
-
-        // Carrusel 2----------------------------------------------
-
-        function carrusel2(){
-            aplicacion.reproducirAudio(audioPop2[noSlideP2], botonAdelante2, 1);
-            animacionEntrada(slides2[noSlideP2], 'default', 1, 1);
-
-            if(noSlideP2 > 0 & atras2.css('display') == 'none'){
-                animacionEntrada(atras2, 'default', 1, 1);
-            }
-        }
-
-        function botonAdelante2(){
-            if(noSlideP2 < slides2.length -1){
-                parpadear(adelante2);
-            }
-            if(noSlideP2 == slides2.length -1){
-                parpadear(cerrar2)
-            }
-        }
-
-        adelante2.click(function(){
-            if(adelante2.css('cursor') == 'pointer'){
-                animacionSalida(slides2[noSlideP2], 'default', 1);
-                aplicacion.detenerAudios();
-                dejarParpadear(adelante2);
-                animacionSalida(adelante2, 'default', 1);
-                noSlideP2++;
-                setTimeout(()=>{
-                    carrusel2();
-                }, 500);
-            }
-        });
-
-        atras2.click(function(){
-            if(noSlideP2 > 0){
-                animacionSalida(slides2[noSlideP2], 'default', 1);
-                aplicacion.detenerAudios();
-                noSlideP2--;
-                
-                setTimeout(()=>{
-                    carrusel2();
-                }, 500);
-            }
-        });
-
-        cerrar2.click(function(){
-            dejarParpadear(cerrar2);
-            animacionSalida(cuadro4, 'default', 1);
-            animacionSalida(pop2, 'default', 1);
-            animacionSalida(cerrar2, 'default', 1);
-            animacionSalida(adelante2, 'default', 1);
-            animacionSalida(atras2, 'default', 1);
+        function finalPantalla(){  
             aplicacion.terminaPantalla();
-        });
+        }
 
     </script>
 </body>

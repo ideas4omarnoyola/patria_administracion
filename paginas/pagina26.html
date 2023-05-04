@@ -23,8 +23,7 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina26/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro1" src="../img/pagina26/cuadro1.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cuadro2" src="../img/pagina26/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton" src="../img/pagina26/boton.png" data-posX="603" data-posY="352"/>
 
     
     <!-- Script de la página -->
@@ -33,13 +32,12 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const cuadro1 = $('#cuadro1');
-        const cuadro2 = $('#cuadro2');
+        const dialogo = $('#dialogo');
+        const boton = $('#boton');
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_26_01.mp3'),
-            new Audio('../audios/Patria_Administración_26_02.mp3')
+            
         ]
 
         // Al cargarse la página
@@ -49,19 +47,18 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], cuadro, 1);
             animacionEntrada(texto, 'default', 1, 1);
-            animacionEntrada(cuadro1, 'default', 1, 1);
+            setTimeout(()=>{
+                parpadear(boton);
+            }, 1000);
         }
 
-        function cuadro(){
-            aplicacion.reproducirAudio(audio[1], finalPantalla, 1);
-            animacionEntrada(cuadro2, 'default', 1, 1);
-        }
-
-        function finalPantalla(){  
-            aplicacion.terminaPantalla();
-        }
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.siguientePagina();
+            }
+        });
 
     </script>
 </body>

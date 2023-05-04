@@ -21,19 +21,37 @@
 
 </head>
 <body class="pagina">
+    <img class="elementos" id="subtitulo" src="../img/pagina16/subtitulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro01" src="../img/pagina16/cuadro01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro02" src="../img/pagina16/cuadro02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro03" src="../img/pagina16/cuadro03.png" data-posX="0" data-posY="0" alt="">
 
-    <img class="elementos" id="fondo" src="../img/pagina16/fondo.png" data-posX="0" data-posY="0"/>
-    
+    <img class="elementos" id="btnNota" src="../img/pagina16/btnNota.png" data-posX="71" data-posY="424" alt="">
+    <img class="elementos" id="popup" src="../img/pagina16/popup.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnCerrar" src="../img/pagina16/btnCerrar.png" data-posX="809" data-posY="141" alt="">
+
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
-        const fondo = $('#fondo');
+
+        const subtitulo = $('#subtitulo');
+        const cuadro01= $('#cuadro01');
+        const cuadro02 = $('#cuadro02');
+        const cuadro03 = $('#cuadro03');
+        const tabla04 = $('#tabla04');
+
+        const btnNota = $('#btnNota');
+        const popup = $('#popup');
+        const btnCerrar = $('#btnCerrar');
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_16_01.mp3')
+            new Audio('../audios/Patria_Administración_16_01.mp3'),
+            new Audio('../audios/Patria_Administración_16_02.mp3'),
+            new Audio('../audios/Patria_Administración_16_03.mp3'),
+            new Audio('../audios/Patria_Administración_16_04.mp3'),
         ]
 
         // Al cargarse la página
@@ -43,13 +61,49 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
-            animacionEntrada(fondo, 'default', 1);
+            aplicacion.reproducirAudio(audio[0], locutaCuadro01, 1);
+            animacionEntrada(subtitulo, 'default', 1);
+        }
+        function locutaCuadro01(){
+            aplicacion.reproducirAudio(audio[1], locutaCuadro02, 1);
+            animacionEntrada(cuadro01, 'default', 1);
+        }
+        function locutaCuadro02(){
+            aplicacion.reproducirAudio(audio[2], clickNota, 1);
+            animacionEntrada(cuadro02, 'default', 1);
+            animacionEntrada(cuadro03, 'default', 1, 5);
         }
 
-        function finalPagina(){
-            aplicacion.terminaPantalla();
+
+        function clickNota(){
+            parpadear(btnNota)
         }
+        function cerrar(){
+            parpadear(btnCerrar);
+        }
+
+        btnNota.click(function(){
+            if(btnNota.css('cursor') == 'pointer'){
+                dejarParpadear(btnNota, true);
+                aplicacion.reproducirAudio(audio[3], cerrar, 1);
+                animacionEntrada(popup, 'default', 1, 1);
+            }
+        });
+        btnCerrar.click(function(){
+            if(btnCerrar.css('cursor') == 'pointer'){
+                dejarParpadear(btnCerrar);
+                animacionSalida(popup, 'default', 1);
+                animacionSalida(btnCerrar, 'default', 1);
+
+                setTimeout(() => {
+                    aplicacion.terminaPantalla();
+                }, 1000);
+            }
+        });
+
+
+
+
 
     </script>
 </body>
