@@ -30,6 +30,10 @@
     <img class="elementos botones" id="boton3" src="../img/pagina29/boton3.png" data-posX="650" data-posY="227" alt="">
     <img class="elementos infos" id="info3" src="../img/pagina29/info3.png" data-posX="0" data-posY="0" alt="">
 
+    <img class="elementos" id="boton4" src="../img/pagina29/boton4.png" data-posX="267" data-posY="415" alt="">
+    <img class="elementos" id="pop1" src="../img/pagina29/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cerrar1" src="../img/pagina29/cerrar.png" data-posX="758" data-posY="221"/>
+
     <img class="elementos" id="ejemplo" src="../img/pagina29/ejemplo.png" data-posX="816" data-posY="491" alt="">
 
     <img class="elementos" id="pop" src="../img/pagina29/pop.png" data-posX="0" data-posY="0"/>
@@ -56,12 +60,14 @@
         const boton1 = $('#boton1');
         const boton2 = $('#boton2');
         const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
         const info1 = $('#info1');
         const info2 = $('#info2');
         const info3 = $('#info3');
         const ejemplo = $('#ejemplo');
 
         const pop = $('#pop');
+        const pop1 = $('#pop1');
 
         const cuadro1 = $('#cuadro1');
         const cuadro2 = $('#cuadro2');
@@ -71,6 +77,7 @@
         const atras = $('#atras');
         const adelante = $('#adelante');
         const cerrar = $('#cerrar');
+        const cerrar1 = $('#cerrar1');
 
         const botones = $('.botones');
 
@@ -89,13 +96,13 @@
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_29_01.mp3'),
-            new Audio('../audios/Audio0.mp3')
+            new Audio('../audios/Patria_Administración_29_09.mp3'),
         ]
 
         const audioBotones = [
             new Audio('../audios/Patria_Administración_29_02.mp3'),
-            new Audio('../audios/Patria_Administración_29_03.mp3'),
             new Audio('../audios/Patria_Administración_29_04.mp3'),
+            new Audio('../audios/Patria_Administración_29_03.mp3'),
         ]
 
         const audiosSlides = [
@@ -129,6 +136,10 @@
                     aplicacion.reproducirAudio(audioBotones[indexInfo], siguienteBoton, 1);
                     animacionEntrada(informacion[indexInfo], 'default', 1);
                     dejarParpadear($(this));
+
+                    if(indexInfo == 0){
+                        animacionEntrada(boton4, 'default', 1);
+                    }
                 }
             });
         });
@@ -136,7 +147,14 @@
         function siguienteBoton(){
             indexInfo++;
             if(indexInfo < informacion.length){
-                botonera();
+                
+                if(indexInfo == 1){
+                    parpadear(boton4);
+                }
+                else{
+                    botonera();
+                }
+
             }
             else{
                 parpadear(ejemplo);
@@ -206,6 +224,27 @@
                 animacionSalida(adelante, 'default', 1, 1);
                 animacionSalida(atras, 'default', 1, 1);
                 aplicacion.terminaPantalla();
+            }
+        });
+
+        boton4.click(function(){
+            if(boton4.css('cursor') == 'pointer'){
+                aplicacion.reproducirAudio(audio[1], cerrarPop, 1);
+                animacionEntrada(pop1, 'default', 1);
+                dejarParpadear(boton4);
+            }
+        });
+
+        function cerrarPop() {  
+            parpadear(cerrar1);
+        }
+
+        
+        cerrar1.click(function(){
+            if(cerrar1.css('cursor') == 'pointer'){
+                animacionSalida(pop1, 'default', 1);
+                animacionSalida(cerrar1, 'default', 1);
+                botonera();
             }
         });
 
