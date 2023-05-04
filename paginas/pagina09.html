@@ -22,14 +22,9 @@
 </head>
 <body class="pagina">
     <img class="elementos" id="subtitulo" src="../img/pagina09/subtitulo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="tabla01" src="../img/pagina09/tabla01.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="tabla02" src="../img/pagina09/tabla02.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="tabla03" src="../img/pagina09/tabla03.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="tabla04" src="../img/pagina09/tabla04.png" data-posX="0" data-posY="0" alt="">
-
-    <img class="elementos" id="btnEjemplo" src="../img/pagina09/btnEjemplo.png" data-posX="637" data-posY="507" alt="">
-    <img class="elementos" id="popup" src="../img/pagina09/popup.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="btnCerrar" src="../img/pagina09/btnCerrar.png" data-posX="894" data-posY="123" alt="">
+    <img class="elementos" id="cuadro03" src="../img/pagina09/cuadro03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro02" src="../img/pagina09/cuadro02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro01" src="../img/pagina09/cuadro01.png" data-posX="0" data-posY="0" alt="">
 
     <!-- Script de la página -->
     <script>
@@ -38,19 +33,16 @@
         let aplicacion = parent;
 
         const subtitulo = $('#subtitulo');
-        const tabla01 = $('#tabla01');
-        const tabla02 = $('#tabla02');
-        const tabla03 = $('#tabla03');
-        const tabla04 = $('#tabla04');
-
-        const btnEjemplo = $('#btnEjemplo');
-        const popup = $('#popup');
-        const btnCerrar = $('#btnCerrar');
+        const cuadro01 = $('#cuadro01');
+        const cuadro02 = $('#cuadro02');
+        const cuadro03 = $('#cuadro03');
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_09_01.mp3'),
             new Audio('../audios/Patria_Administración_09_02.mp3'),
+            new Audio('../audios/Patria_Administración_09_03.mp3'),
+            new Audio('../audios/Patria_Administración_09_04.mp3'),
         ]
 
         // Al cargarse la página
@@ -60,42 +52,26 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], clickEjemplo, 1);
-            animacionEntrada(subtitulo, 'default', 1);
-            animacionEntrada(tabla01, 'izquierda-derecha', 1, 5);
-            animacionEntrada(tabla02, 'izquierda-derecha', 1, 17);
-            animacionEntrada(tabla03, 'izquierda-derecha', 1, 25);
-            animacionEntrada(tabla04, 'izquierda-derecha', 1, 35);
+            aplicacion.reproducirAudio(audio[0], locutaCuadro01, 1);
+            animacionEntrada(subtitulo, 'default', 1,);
 
         }
-        function clickEjemplo(){
-            parpadear(btnEjemplo)
+        function locutaCuadro01(){
+            aplicacion.reproducirAudio(audio[1], locutaCuadro02, 1);
+            animacionEntrada(cuadro01, 'derecha-izquierda', 1);
         }
-        function cerrar(){
-            parpadear(btnCerrar);
+        function locutaCuadro02(){
+            aplicacion.reproducirAudio(audio[2], locutaCuadro03, 1);
+            animacionEntrada(cuadro02, 'derecha-izquierda', 1);
+        }
+        function locutaCuadro03(){
+            aplicacion.reproducirAudio(audio[3], finalPagina, 1);
+            animacionEntrada(cuadro03, 'derecha-izquierda', 1);
         }
 
-        btnEjemplo.click(function(){
-            if(btnEjemplo.css('cursor') == 'pointer'){
-                dejarParpadear(btnEjemplo, true);
-                aplicacion.reproducirAudio(audio[1], cerrar, 1);
-                animacionEntrada(popup, 'default', 1, 1);
-            }
-        });
-        btnCerrar.click(function(){
-            if(btnCerrar.css('cursor') == 'pointer'){
-                dejarParpadear(btnCerrar);
-                animacionSalida(popup, 'default', 1);
-                animacionSalida(btnCerrar, 'default', 1);
-
-                setTimeout(() => {
-                    aplicacion.terminaPantalla();
-                }, 1000);
-            }
-        });
-
-
-
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
 
 
     </script>

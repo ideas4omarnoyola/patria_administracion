@@ -21,7 +21,12 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="fondo" src="../img/pagina07/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtitulo" src="../img/pagina07/subtitulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="resultado" src="../img/pagina07/resultado.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro03" src="../img/pagina07/cuadro03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro02" src="../img/pagina07/cuadro02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro01" src="../img/pagina07/cuadro01.png" data-posX="0" data-posY="0" alt="">
+
 
     <!-- Script de la página -->
     <script>
@@ -29,12 +34,17 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
 
-        const fondo = $('#fondo');
-        const ejemplo = $('#ejemplo');
+        const subtitulo = $('#subtitulo');
+        const cuadro01 = $('#cuadro01');
+        const cuadro02 = $('#cuadro02');
+        const cuadro03 = $('#cuadro03');
+        const resultado = $('#resultado');
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_07_01.mp3'),
+            new Audio('../audios/Patria_Administración_07_02.mp3'),
+            new Audio('../audios/Patria_Administración_07_03.mp3'),
         ]
 
         // Al cargarse la página
@@ -44,9 +54,20 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
-            animacionEntrada(fondo, 'default', 1, 1);
+            aplicacion.reproducirAudio(audio[0], locutaAudio2, 1);
+            animacionEntrada(subtitulo, 'default', 1, 1);
 
+        }
+        function locutaAudio2(){
+            aplicacion.reproducirAudio(audio[1], locutaAudio3, 1);
+        }
+
+        function locutaAudio3(){
+            aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+            animacionEntrada(cuadro01, 'derecha-izquierda', 1, 1);
+            animacionEntrada(cuadro02, 'derecha-izquierda', 1, 17);
+            animacionEntrada(cuadro03, 'derecha-izquierda', 1, 30);
+            animacionEntrada(resultado, 'derecha-izquierda', 1, 45);
         }
 
         function finalPagina(){

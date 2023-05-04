@@ -22,7 +22,14 @@
 </head>
 <body class="pagina">
     <img class="elementos" id="subtitulo" src="../img/pagina10/subtitulo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info" src="../img/pagina10/info.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla01" src="../img/pagina10/tabla01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla02" src="../img/pagina10/tabla02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla03" src="../img/pagina10/tabla03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="tabla04" src="../img/pagina10/tabla04.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btnEjemplo" src="../img/pagina10/btnEjemplo.png" data-posX="637" data-posY="507" alt="">
+    <img class="elementos" id="popup" src="../img/pagina10/popup.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnCerrar" src="../img/pagina10/btnCerrar.png" data-posX="894" data-posY="123" alt="">
 
     <!-- Script de la página -->
     <script>
@@ -31,7 +38,14 @@
         let aplicacion = parent;
 
         const subtitulo = $('#subtitulo');
-        const info = $('#info');
+        const tabla01 = $('#tabla01');
+        const tabla02 = $('#tabla02');
+        const tabla03 = $('#tabla03');
+        const tabla04 = $('#tabla04');
+
+        const btnEjemplo = $('#btnEjemplo');
+        const popup = $('#popup');
+        const btnCerrar = $('#btnCerrar');
 
         // Audios------------------------------------------------------
         const audio = [
@@ -46,18 +60,42 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], siguienteAudio, 1);
-            animacionEntrada(subtitulo, 'default', 1, 1);
+            aplicacion.reproducirAudio(audio[0], clickEjemplo, 1);
+            animacionEntrada(subtitulo, 'default', 1);
+            animacionEntrada(tabla01, 'izquierda-derecha', 1, 5);
+            animacionEntrada(tabla02, 'izquierda-derecha', 1, 17);
+            animacionEntrada(tabla03, 'izquierda-derecha', 1, 25);
+            animacionEntrada(tabla04, 'izquierda-derecha', 1, 35);
 
         }
-        function siguienteAudio(){
-            aplicacion.reproducirAudio(audio[1], finalPagina, 1);
-            animacionEntrada(info, 'derecha-izquierda', 1);
+        function clickEjemplo(){
+            parpadear(btnEjemplo)
+        }
+        function cerrar(){
+            parpadear(btnCerrar);
         }
 
-        function finalPagina(){
-            aplicacion.terminaPantalla();
-        }
+        btnEjemplo.click(function(){
+            if(btnEjemplo.css('cursor') == 'pointer'){
+                dejarParpadear(btnEjemplo, true);
+                aplicacion.reproducirAudio(audio[1], cerrar, 1);
+                animacionEntrada(popup, 'default', 1, 1);
+            }
+        });
+        btnCerrar.click(function(){
+            if(btnCerrar.css('cursor') == 'pointer'){
+                dejarParpadear(btnCerrar);
+                animacionSalida(popup, 'default', 1);
+                animacionSalida(btnCerrar, 'default', 1);
+
+                setTimeout(() => {
+                    aplicacion.terminaPantalla();
+                }, 1000);
+            }
+        });
+
+
+
 
 
     </script>

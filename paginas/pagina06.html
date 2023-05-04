@@ -21,24 +21,30 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="subtitulo" src="../img/pagina06/subtitulo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="resultado" src="../img/pagina06/resultado.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="cuadro03" src="../img/pagina06/cuadro03.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="cuadro02" src="../img/pagina06/cuadro02.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="cuadro01" src="../img/pagina06/cuadro01.png" data-posX="0" data-posY="0" alt="">
 
+    <img class="elementos" id="fondo" src="../img/pagina06/fondo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton1" src="../img/pagina06/boton1.png" data-posX="34.059" data-posY="261"/>
+    <img class="elementos" id="boton2" src="../img/pagina06/boton2.png" data-posX="34.059" data-posY="351.79"/>
+    <img class="elementos" id="info1" src="../img/pagina06/info1.png" data-posX="362.57" data-posY="306"/>  
+    <img class="elementos" id="info2" src="../img/pagina06/info2.png" data-posX="362.57" data-posY="306"/>  
 
+    
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
+        const fondo = $('#fondo');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
 
-        const subtitulo = $('#subtitulo');
-        const cuadro01 = $('#cuadro01');
-        const cuadro02 = $('#cuadro02');
-        const cuadro03 = $('#cuadro03');
-        const resultado = $('#resultado');
+        let observandoBtn1 = false;
+        let observandoBtn2 = false;
+
+        let abrirBtn1 = false;
+        let abrirBtn2 = false;
 
         // Audios------------------------------------------------------
         const audio = [
@@ -54,26 +60,56 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], locutaAudio2, 1);
-            animacionEntrada(subtitulo, 'default', 1, 1);
-
-        }
-        function locutaAudio2(){
-            aplicacion.reproducirAudio(audio[1], locutaAudio3, 1);
+            aplicacion.reproducirAudio(audio[0], activarBoton1, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(boton1, 'default', 1, 1);
+            animacionEntrada(boton2, 'default', 1, 1);
         }
 
-        function locutaAudio3(){
-            aplicacion.reproducirAudio(audio[2], finalPagina, 1);
-            animacionEntrada(cuadro01, 'derecha-izquierda', 1, 1);
-            animacionEntrada(cuadro02, 'derecha-izquierda', 1, 17);
-            animacionEntrada(cuadro03, 'derecha-izquierda', 1, 30);
-            animacionEntrada(resultado, 'derecha-izquierda', 1, 45);
+        function activarBoton1(){
+            if(!abrirBtn1){
+                abrirBtn1 = true;
+                parpadear(boton1);
+            }
         }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer' && !observandoBtn2){
+                dejarParpadear(boton1, true);
+                animacionSalida(info2, 'default', 1);
+
+                aplicacion.reproducirAudio(audio[1], activarBoton2, 1);
+                animacionEntrada(info1, 'default', 1, 1);
+
+                observandoBtn1 = true;
+            }
+        });
+
+        function activarBoton2(){
+            observandoBtn1 = false;
+
+            if(!abrirBtn2){
+                abrirBtn2 = true;
+                parpadear(boton2);
+            }
+        }
+
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer' && !observandoBtn1){
+                dejarParpadear(boton2, true);
+                animacionSalida(info1, 'default', 1);
+
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+                animacionEntrada(info2, 'default', 1, 1);
+
+                observandoBtn2 = true;
+            }
+        });
 
         function finalPagina(){
             aplicacion.terminaPantalla();
+            observandoBtn2 = false;
         }
-
 
     </script>
 </body>
