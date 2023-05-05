@@ -33,7 +33,8 @@
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_14_01.mp3')
+            new Audio('../audios/Patria_Administración_14_01.mp3'),
+            new Audio('../audios/Patria_Administración_14_02.mp3')
         ]
 
         // Al cargarse la página
@@ -43,8 +44,12 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], finalPagina, 1);
+            aplicacion.reproducirAudio(audio[0], locutaContenido, 1);
             animacionEntrada(fondo, 'default', 1);
+        }
+
+        function locutaContenido(){
+            aplicacion.reproducirAudio(audio[1], finalPagina, 1);
         }
 
         function finalPagina(){
