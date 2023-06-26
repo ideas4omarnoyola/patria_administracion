@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 31</title>
+    <title>Página 32</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/estilos.css">
@@ -23,11 +23,10 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina31/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="d3" src="../img/pagina31/d3.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="d2" src="../img/pagina31/d2.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="d1" src="../img/pagina31/d1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d2" src="../img/pagina31/d2.png" data-posX="0" data-posY="0"/>
 
-    <img class="elementos" id="ejemplo" src="../img/pagina31/ejemplo.png" data-posX="58" data-posY="455"/>
+    <img class="elementos" id="ejemplo" src="../img/pagina31/ejemplo.png" data-posX="811" data-posY="428"/>
     <img class="elementos" id="pop" src="../img/pagina31/pop.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cerrar" src="../img/pagina31/cerrar.png" data-posX="894" data-posY="123"/>
 
@@ -40,23 +39,21 @@
         const texto = $('#texto');
         const d1 = $('#d1');
         const d2 = $('#d2');
-        const d3 = $('#d3');
         const ejemplo = $('#ejemplo');
         const cerrar = $('#cerrar');
         const pop = $('#pop');
 
-        const textos = [d1, d2, d3];
+        const textos = [d1, d2];
         let indexTexto = 0; 
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_31_04.mp3')
+            new Audio('../audios/Patria_Administración_31_03.mp3')
         ]
 
         const audioTexto = [
             new Audio('../audios/Patria_Administración_31_01.mp3'),
-            new Audio('../audios/Patria_Administración_31_02.mp3'),
-            new Audio('../audios/Patria_Administración_31_03.mp3'),
+            new Audio('../audios/Patria_Administración_31_02.mp3')
         ]
 
         // Al cargarse la página
@@ -82,7 +79,7 @@
                 aparecerImagenes();
             }
             else{
-                parpadear(ejemplo);
+                aplicacion.terminaPantalla();
             }
         }
 

@@ -40,8 +40,13 @@
 
     <img class="elementos" id="cuadro1" src="../img/pagina28/cuadro1.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cuadro2" src="../img/pagina28/cuadro2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2_1" src="../img/pagina28/cuadro2_1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2_2" src="../img/pagina28/cuadro2_2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro2_3" src="../img/pagina28/cuadro2_3.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cuadro3" src="../img/pagina28/cuadro3.png" data-posX="0" data-posY="0"/>
     <img class="elementos" id="cuadro4" src="../img/pagina28/cuadro4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro4_1" src="../img/pagina28/cuadro4_1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cuadro4_2" src="../img/pagina28/cuadro4_2.png" data-posX="0" data-posY="0"/>
 
     <img class="elementos" id="atras" src="../img/pagina28/atras.png" data-posX="51" data-posY="289"/>
     <img class="elementos" id="adelante" src="../img/pagina28/adelante.png" data-posX="914" data-posY="289"/>
@@ -71,8 +76,13 @@
 
         const cuadro1 = $('#cuadro1');
         const cuadro2 = $('#cuadro2');
+        const cuadro2_1 = $('#cuadro2_1');
+        const cuadro2_2 = $('#cuadro2_2');
+        const cuadro2_3 = $('#cuadro2_3');
         const cuadro3 = $('#cuadro3');
         const cuadro4 = $('#cuadro4');
+        const cuadro4_1 = $('#cuadro4_1');
+        const cuadro4_2 = $('#cuadro4_2');
 
         const atras = $('#atras');
         const adelante = $('#adelante');
@@ -88,9 +98,14 @@
 
         const slides = [cuadro1, cuadro2, cuadro3, cuadro4];
 
-        let noSlide = 0
+        let noSlide = 0;
 
-        let indexInfo = 0;
+        let indexInfo = 2;
+
+        let intervalo1;
+        let intervalo2;
+        let intervalo3;
+        let intervalo4;
         
 
         // Audios------------------------------------------------------
@@ -176,6 +191,29 @@
             if(noSlide > 0 & atras.css('display') == 'none'){
                 animacionEntrada(atras, 'default', 1, 1);
             }
+
+            if(noSlide == 1) {
+                animacionEntrada(cuadro2_1, 'default', 1, 10);
+
+                intervalo1 = setTimeout(()=>{
+                    animacionSalida(cuadro2_1, 'default', 1);
+                    animacionEntrada(cuadro2_2, 'default', 1);
+                }, 55000);
+
+                intervalo2 = setTimeout(()=>{
+                    animacionSalida(cuadro2_2, 'default', 1);
+                    animacionEntrada(cuadro2_3, 'default', 1);
+                }, 67000);
+            }
+
+            if(noSlide == 3) {
+                animacionEntrada(cuadro4_1, 'default', 1, 19);
+
+                intervalo3 = setTimeout(()=>{
+                    animacionSalida(cuadro4_1, 'default', 1);
+                    animacionEntrada(cuadro4_2, 'default', 1);
+                }, 44000);
+            }
         }
 
         function botonAdelante(){
@@ -193,6 +231,11 @@
                 aplicacion.detenerAudios();
                 dejarParpadear(adelante);
                 animacionSalida(adelante, 'default', 1);
+
+                if(noSlide == 1) {
+                    animacionSalida(cuadro2_3, 'default', 1);
+                }
+
                 noSlide++;
                 setTimeout(()=>{
                     carrusel();
@@ -204,7 +247,24 @@
             if(noSlide > 0){
                 animacionSalida(slides[noSlide], 'default', 1);
                 aplicacion.detenerAudios();
-                noSlide--;
+
+                if(noSlide == 1) {
+                    animacionSalida(cuadro2_1, 'default', 1);
+                    animacionSalida(cuadro2_2, 'default', 1);
+                    animacionSalida(cuadro2_3, 'default', 1);
+
+                    clearTimeout(intervalo1);
+                    clearTimeout(intervalo2);
+                }
+
+                if(noSlide == 3) {
+                    animacionSalida(cuadro4_1, 'default', 1);
+                    animacionSalida(cuadro4_2, 'default', 1);
+
+                    clearTimeout(intervalo3);
+                }
+
+                noSlide--;               
                 
                 setTimeout(()=>{
                     carrusel();
@@ -220,6 +280,11 @@
                 animacionSalida(cuadro2, 'default', 1, 1);
                 animacionSalida(cuadro3, 'default', 1, 1);
                 animacionSalida(cuadro4, 'default', 1, 1);
+                animacionSalida(cuadro2_1, 'default', 1);
+                animacionSalida(cuadro2_2, 'default', 1);
+                animacionSalida(cuadro2_3, 'default', 1);
+                animacionSalida(cuadro4_1, 'default', 1);
+                animacionSalida(cuadro4_2, 'default', 1);
                 animacionSalida(cerrar, 'default', 1, 1);
                 animacionSalida(adelante, 'default', 1, 1);
                 animacionSalida(atras, 'default', 1, 1);

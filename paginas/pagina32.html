@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 32</title>
+    <title>Página 33</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/estilos.css">
@@ -23,12 +23,7 @@
 <body class="pagina">
 
     <img class="elementos" id="texto" src="../img/pagina32/texto.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="d1" src="../img/pagina32/d1.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="d2" src="../img/pagina32/d2.png" data-posX="0" data-posY="0"/>
-
-    <img class="elementos" id="ejemplo" src="../img/pagina32/ejemplo.png" data-posX="811" data-posY="428"/>
-    <img class="elementos" id="pop" src="../img/pagina32/pop.png" data-posX="0" data-posY="0"/>
-    <img class="elementos" id="cerrar" src="../img/pagina32/cerrar.png" data-posX="894" data-posY="123"/>
+    <img class="elementos" id="boton" src="../img/pagina32/boton.png" data-posX="628" data-posY="460"/>
 
     
     <!-- Script de la página -->
@@ -37,23 +32,11 @@
         // Variable----------------------------------------------------
         let aplicacion = parent;
         const texto = $('#texto');
-        const d1 = $('#d1');
-        const d2 = $('#d2');
-        const ejemplo = $('#ejemplo');
-        const cerrar = $('#cerrar');
-        const pop = $('#pop');
-
-        const textos = [d1, d2];
-        let indexTexto = 0; 
+        const boton = $('#boton');
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Patria_Administración_32_03.mp3')
-        ]
-
-        const audioTexto = [
-            new Audio('../audios/Patria_Administración_32_01.mp3'),
-            new Audio('../audios/Patria_Administración_32_02.mp3')
+            new Audio('../audios/Patria_Administración_32_01.mp3')
         ]
 
         // Al cargarse la página
@@ -63,44 +46,18 @@
         });
 
         function iniciarContenido(){
-            animacionEntrada(texto, 'default', 1);
-            aparecerImagenes();
+            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
+            animacionEntrada(texto, 'default', 1, 1);
         }
 
-        function aparecerImagenes(){
-            aplicacion.reproducirAudio(audioTexto[indexTexto], siguiente, 1);
-            animacionEntrada(textos[indexTexto], 'abajo-arriba', 1, 1);
+        function activarBoton(){
+            parpadear(boton);
         }
 
-        function siguiente(){
-            indexTexto++;
-
-            if(indexTexto < textos.length){
-                aparecerImagenes();
-            }
-            else{
-                aplicacion.terminaPantalla();
-            }
-        }
-
-        ejemplo.click(function(){
-            if(ejemplo.css('cursor') == 'pointer'){
-                aplicacion.reproducirAudio(audio[0], cerrarPop, 1);
-                animacionEntrada(pop, 'default', 1);
-                dejarParpadear(ejemplo);
-            }
-        });
-
-        function cerrarPop(){
-            parpadear(cerrar);
-        }
-
-        cerrar.click(function(){
-            if(cerrar.css('cursor') == 'pointer'){
-                dejarParpadear(cerrar);
-                animacionSalida(pop, 'default', 1, 1);
-                animacionSalida(cerrar, 'default', 1, 1);
-                aplicacion.terminaPantalla();
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.siguientePagina();
             }
         });
 
