@@ -29,6 +29,10 @@
 
     <img class="elementos" id="btnEjemplo" src="../img/pagina10/btnEjemplo.png" data-posX="637" data-posY="507" alt="">
     <img class="elementos" id="popup" src="../img/pagina10/popup.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="resalte1" src="../img/pagina10/resalte1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="resalte2" src="../img/pagina10/resalte2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="resalte3" src="../img/pagina10/resalte3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="resalte4" src="../img/pagina10/resalte4.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="btnCerrar" src="../img/pagina10/btnCerrar.png" data-posX="894" data-posY="123" alt="">
 
     <!-- Script de la página -->
@@ -38,6 +42,12 @@
         let aplicacion = parent;
 
         const subtitulo = $('#subtitulo');
+
+        const resalte1 = $('#resalte1');
+        const resalte2 = $('#resalte2');
+        const resalte3 = $('#resalte3');
+        const resalte4 = $('#resalte4');
+
         const tabla01 = $('#tabla01');
         const tabla02 = $('#tabla02');
         const tabla03 = $('#tabla03');
@@ -80,12 +90,20 @@
                 dejarParpadear(btnEjemplo, true);
                 aplicacion.reproducirAudio(audio[1], cerrar, 1);
                 animacionEntrada(popup, 'default', 1, 1);
+                animacionEntrada(resalte1, 'default', 1, 10);
+                animacionEntrada(resalte2, 'default', 1, 28);
+                animacionEntrada(resalte3, 'default', 1, 56);
+                animacionEntrada(resalte4, 'default', 1, 72);
             }
         });
         btnCerrar.click(function(){
             if(btnCerrar.css('cursor') == 'pointer'){
                 dejarParpadear(btnCerrar);
                 animacionSalida(popup, 'default', 1);
+                animacionSalida(resalte1, 'default', 1);
+                animacionSalida(resalte2, 'default', 1);
+                animacionSalida(resalte3, 'default', 1);
+                animacionSalida(resalte4, 'default', 1);
                 animacionSalida(btnCerrar, 'default', 1);
 
                 setTimeout(() => {
