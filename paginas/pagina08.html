@@ -21,86 +21,36 @@
 
 </head>
 <body class="pagina">
-    <img class="elementos" id="subtitulo" src="../img/pagina08/subtitulo.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="fondo" src="../img/pagina08/fondo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="fondo" src="../img/pagina08/fondo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton1" src="../img/pagina08/boton1.png" data-posX="34.059" data-posY="261"/>
+    <img class="elementos" id="boton2" src="../img/pagina08/boton2.png" data-posX="34.059" data-posY="351.79"/>
+    <img class="elementos" id="info1" src="../img/pagina08/info1.png" data-posX="362.57" data-posY="306"/>  
+    <img class="elementos" id="info2" src="../img/pagina08/info2.png" data-posX="362.57" data-posY="306"/>  
+
     
-    <img class="elementos" id="btn01" src="../img/pagina08/btn01.png" data-posX="34" data-posY="261" alt="">
-    <img class="elementos" id="btn02" src="../img/pagina08/btn02.png" data-posX="34" data-posY="351" alt="">
-
-    <img class="elementos" id="btn01_2" src="../img/pagina08/btn01_2.png" data-posX="462" data-posY="179" alt="">
-    <img class="elementos" id="btn01_1" src="../img/pagina08/btn01_1.png" data-posX="313" data-posY="179" alt="">
-    
-    <img class="elementos" id="btn02_2" src="../img/pagina08/btn02_2.png" data-posX="462" data-posY="179" alt="">
-    <img class="elementos" id="btn02_1" src="../img/pagina08/btn02_1.png" data-posX="313" data-posY="179" alt="">
-
-    <img class="elementos" id="info01_1" src="../img/pagina08/info01_1.png" data-posX="357" data-posY="292" alt="">
-    <img class="elementos" id="info01_2" src="../img/pagina08/info01_2.png" data-posX="310" data-posY="278.66" alt="">
-
-    <img class="elementos" id="info02_1" src="../img/pagina08/info02_1.png" data-posX="357" data-posY="292" alt="">
-    <img class="elementos" id="info02_2" src="../img/pagina08/info02_2.png" data-posX="303" data-posY="290" alt="">
-
-    <img class="elementos" id="btnNota" src="../img/pagina08/btnNota.png" data-posX="726.959" data-posY="448" alt="">
-    <img class="elementos" id="popup" src="../img/pagina08/popup.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="btnCerrar" src="../img/pagina08/btnCerrar.png" data-posX="809" data-posY="141" alt="">
-
     <!-- Script de la página -->
     <script>
 
         // Variable----------------------------------------------------
         let aplicacion = parent;
-
-        const subtitulo = $('#subtitulo');
         const fondo = $('#fondo');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
 
-        const btn01 = $('#btn01');
-        const btn02 = $('#btn02');
+        let observandoBtn1 = false;
+        let observandoBtn2 = false;
 
-        const btn01_1 = $('#btn01_1');
-        const btn01_2 = $('#btn01_2');
-
-        const btn02_1 = $('#btn02_1');
-        const btn02_2 = $('#btn02_2');
-
-        const info01_1 = $('#info01_1');
-        const info01_2 = $('#info01_2');
-
-        const info02_1 = $('#info02_1');
-        const info02_2 = $('#info02_2');
-
-        const btnNota = $('#btnNota');
-        const popup = $('#popup');
-        const btnCerrar = $('#btnCerrar');
-
-        let observandoBtn01 = false;
-        let observandoBtn02 = false;
-
-        let observandoBtn01_1 = false;
-        let observandoBtn01_2 = false;
-
-        let observandoBtn02_1 = false;
-        let observandoBtn02_2 = false;
-
-        let abrirBtn01 = false;
-        let abrirBtn01_1 = false;
-        let abrirBtn01_2 = false;
-        let abrirBtn01_3 = false;
-
-        let abrirBtn02 = false;
-        let abrirBtn02_1 = false;
-        let abrirBtn02_2 = false;
-        let abrirBtn02_3 = false;
+        let abrirBtn1 = false;
+        let abrirBtn2 = false;
 
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Patria_Administración_08_01.mp3'),
             new Audio('../audios/Patria_Administración_08_02.mp3'),
             new Audio('../audios/Patria_Administración_08_03.mp3'),
-            new Audio('../audios/Patria_Administración_08_04.mp3'),
-            new Audio('../audios/Patria_Administración_08_05.mp3'),
-            new Audio('../audios/Patria_Administración_08_06.mp3'),
-            new Audio('../audios/Patria_Administración_08_07.mp3'),
-            new Audio('../audios/Patria_Administración_08_08.mp3'),
-            new Audio('../audios/Patria_Administración_08_09.mp3'),
         ]
 
         // Al cargarse la página
@@ -110,183 +60,57 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], locutaInstrucciones, 1);
-            animacionEntrada(subtitulo, 'default', 1);
-        }
-
-        function locutaInstrucciones(){
-            aplicacion.reproducirAudio(audio[1], clickBtn01, 1);
+            aplicacion.reproducirAudio(audio[0], activarBoton1, 1);
             animacionEntrada(fondo, 'default', 1);
-            animacionEntrada(btn01, 'arriba-abajo', 1, 1);
-            animacionEntrada(btn02, 'arriba-abajo', 1, 1.5);
+            animacionEntrada(boton1, 'default', 1, 1);
+            animacionEntrada(boton2, 'default', 1, 1);
         }
 
-        function clickBtn01(){
-            if(!abrirBtn01){
-                abrirBtn01 = true;
-                parpadear(btn01);
+        function activarBoton1(){
+            if(!abrirBtn1){
+                abrirBtn1 = true;
+                parpadear(boton1);
             }
-        }
-        function clickBtn01_1(){
-
-            if(!abrirBtn01_1){
-                abrirBtn01_1 = true;
-                parpadear(btn01_1);
-            }
-
-        }
-        function clickBtnNota(){
-            parpadear(btnNota);
-        }
-        function cerrar(){
-            parpadear(btnCerrar);
         }
 
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer' && !observandoBtn2){
+                dejarParpadear(boton1, true);
+                animacionSalida(info2, 'default', 1);
 
-        function clickBtn02(){
-            if(!abrirBtn02){
-                abrirBtn02= true;
-                parpadear(btn02);
+                aplicacion.reproducirAudio(audio[1], activarBoton2, 1);
+                animacionEntrada(info1, 'default', 1, 1);
+
+                observandoBtn1 = true;
             }
-            observandoBtn01 = false;
-            observandoBtn01_2 = false;
-        }
-        function clickBtn02_1(){
-            if(!abrirBtn02_1){
-                abrirBtn02_1 = true;
-                parpadear(btn02_1);
-            }
-        }
-        function clickBtn02_2(){
-            observandoBtn02_1 = false;
-            
-            if(!abrirBtn02_2){
-                abrirBtn02_2 = true;
-                parpadear(btn02_2);
+        });
+
+        function activarBoton2(){
+            observandoBtn1 = false;
+
+            if(!abrirBtn2){
+                abrirBtn2 = true;
+                parpadear(boton2);
             }
         }
+
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer' && !observandoBtn1){
+                dejarParpadear(boton2, true);
+                animacionSalida(info1, 'default', 1);
+
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+                animacionEntrada(info2, 'default', 1, 1);
+
+                observandoBtn2 = true;
+            }
+        });
 
         function finalPagina(){
             aplicacion.terminaPantalla();
-            observandoBtn02 = false;
-            observandoBtn02_3 = false;
+            observandoBtn2 = false;
         }
 
-
-        //Funcionalidad Boton Año Calendario
-        btn01.click(function(){
-            if(btn01.css('cursor') == 'pointer' && !observandoBtn02  && !observandoBtn01_1 && !observandoBtn01_2  && !observandoBtn02_1 && !observandoBtn02_2){
-                dejarParpadear(btn01, true);
-                aplicacion.reproducirAudio(audio[2], clickBtn01_1, 1);
-                animacionSalida(info01_1, 'default', 1);
-                animacionSalida(info01_2, 'default', 1);
-                animacionSalida(btnNota, 'default', 1);
-
-                animacionEntrada(btn01_1, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(btn01_2, 'arriba-abajo', 1, 2.5);                
-                observandoBtn01 = true;
-            }
-        });
-
-        //Funcionalidad Boton Año Calendario - Significado
-        btn01_1.click(function(){
-            if(btn01_1.css('cursor') == 'pointer' && !observandoBtn01_2){
-                dejarParpadear(btn01_1, true);
-                aplicacion.reproducirAudio(audio[3], clickBtn01_2, 1);
-
-                animacionSalida(info01_2, 'default', 1);
-                animacionEntrada(info01_1, 'default', 1, 1);
-
-                observandoBtn01_1 = true;
-            }
-        });
-
-        function clickBtn01_2(){
-            observandoBtn01_1 = false;
-
-            if(!abrirBtn01_2){
-                abrirBtn01_2 = true;
-                parpadear(btn01_2)
-            }    
-        }
-
-        //Funcionalidad Boton Año Calendario - Significado - Nota
-        btnNota.click(function(){
-            if(btnNota.css('cursor') == 'pointer'){
-                dejarParpadear(btnNota, true);
-                aplicacion.reproducirAudio(audio[7], cerrar, 1);
-                animacionEntrada(popup, 'default', 1);
-            }
-        });
-
-        btnCerrar.click(function(){
-            if(btnCerrar.css('cursor') == 'pointer'){
-                dejarParpadear(btnCerrar);
-                animacionSalida(popup, 'default', 1);
-                animacionSalida(btnCerrar, 'default', 1);
-
-                setTimeout(() => {
-                    clickBtn02_2();
-                }, 1000);
-            }
-        });
-
-        //Funcionalidad Boton Año Calendario - Ejemplo
-        btn01_2.click(function(){
-            if(btn01_2.css('cursor') == 'pointer' && !observandoBtn01_1){
-                dejarParpadear(btn01_2, true);
-                aplicacion.reproducirAudio(audio[4], clickBtn02, 1);
-                animacionSalida(info01_1, 'default', 1);
-                animacionSalida(btnNota, 'default', 1);
-                animacionEntrada(info01_2, 'default', 1, 1);
-
-                observandoBtn01_2 = true;
-            }
-        });
-
-
-        //Funcionalidad Boton Año Calendario
-        btn02.click(function(){
-            if(btn02.css('cursor') == 'pointer' && !observandoBtn01 && !observandoBtn02_1 && !observandoBtn02_2 && !observandoBtn01_1 && !observandoBtn01_2){
-                dejarParpadear(btn02, true);
-                aplicacion.reproducirAudio(audio[5], clickBtn02_1, 1);
-                animacionSalida(btn01_1, 'default', 1);
-                animacionSalida(btn01_2, 'default', 1);
-                animacionSalida(info01_1, 'default', 1);
-                animacionSalida(info01_2, 'default', 1);
-                animacionSalida(btnNota, 'default', 1);
-                animacionSalida(info02_1, 'default', 1);
-                animacionSalida(info02_2, 'default', 1);
-                animacionEntrada(btn02_1, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(btn02_2, 'arriba-abajo', 1, 2.5);
-                observandoBtn02 = true;
-
-            }
-        });
-
-        //Funcionalidad Boton Año Suscripcion - Significado
-        btn02_1.click(function(){
-            if(btn02_1.css('cursor') == 'pointer' && !observandoBtn02_2 && !observandoBtn01_1 && !observandoBtn01_2){
-                dejarParpadear(btn02_1, true);
-                aplicacion.reproducirAudio(audio[6],  clickBtnNota, 1);
-                animacionSalida(info02_2, 'default', 1);
-                animacionEntrada(info02_1, 'default', 1, 1);
-
-                observandoBtn02_1 = true;
-            }
-        });
-        //Funcionalidad Boton Año Suscripcion - Ejemplo
-        btn02_2.click(function(){
-            if(btn02_2.css('cursor') == 'pointer'  && !observandoBtn02_1){
-                dejarParpadear(btn02_2, true);
-                aplicacion.reproducirAudio(audio[8], finalPagina, 1);
-                animacionSalida(info02_1, 'default', 1);
-                animacionSalida(btnNota, 'default', 1);
-                animacionEntrada(info02_2, 'default', 1, 1);
-
-                observandoBtn02_2 = true;
-            }
-        });
     </script>
 </body>
 </html>
